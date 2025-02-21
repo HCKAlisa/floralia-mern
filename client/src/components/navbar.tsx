@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import Logo from "@/assets/Logo/logoNoBackground.png";
 import Link from "./link";
 import { SelectedPage } from "../shared/types";
 import useMediaQuery from "../hooks/useMediaQuery";
@@ -22,7 +21,6 @@ const Navbar = ({isTopOfPage, selectedPage, setSelectedPage}: Props) => {
             <div className={`${flexBetween} fixed top-0 z-50 w-[100dvw] md:w-full py-6`}>
                 <div className={` ${navBarBackground} ${flexBetween} mx-auto w-11/12`}>
                     <div className={`${flexBetween} w-full gap-16`}>
-                        <img src={Logo} alt="logo" className="w-10 h-10 opacity-0" />
                         { isAboveMediumScreens ? (
                             <div className={`${flexBetween} gap-8 text-sm`}>
                                 <Link
@@ -30,15 +28,11 @@ const Navbar = ({isTopOfPage, selectedPage, setSelectedPage}: Props) => {
                                     selectedPage={selectedPage}
                                     setSelectedPage={setSelectedPage}
                                 />
-                                <Link page="Projects"
+                                <Link page="Team"
                                       selectedPage={selectedPage}
                                       setSelectedPage={setSelectedPage}
                                 />
-                                <Link page="About"
-                                      selectedPage={selectedPage}
-                                      setSelectedPage={setSelectedPage}
-                                />
-                                <Link page="Experience"
+                                <Link page="FAQ"
                                       selectedPage={selectedPage}
                                       setSelectedPage={setSelectedPage}
                                 />
@@ -67,15 +61,11 @@ const Navbar = ({isTopOfPage, selectedPage, setSelectedPage}: Props) => {
                             selectedPage={selectedPage}
                             setSelectedPage={setSelectedPage}
                         />
-                        <Link page="About"
+                        <Link page="Team"
                               selectedPage={selectedPage}
                               setSelectedPage={setSelectedPage}
                         />
-                        <Link page="Projects"
-                              selectedPage={selectedPage}
-                              setSelectedPage={setSelectedPage}
-                        />
-                        <Link page="Experience"
+                        <Link page="FAQ"
                               selectedPage={selectedPage}
                               setSelectedPage={setSelectedPage}
                         />
