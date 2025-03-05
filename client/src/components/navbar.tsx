@@ -18,7 +18,7 @@ const Navbar = ({isTopOfPage, selectedPage, setSelectedPage}: Props) => {
 
     return (
         <nav>
-            <div className={`${flexBetween} fixed top-0 z-50 w-[100dvw] md:w-full py-6`}>
+            <div className={`${flexBetween} fixed top-0 z-50 w-[100dvw] md:w-full md:h-[25vh]`}>
                 <div className={` ${navBarBackground} ${flexBetween} mx-auto w-11/12`}>
                     <div className={`${flexBetween} w-full gap-16`}>
                         { isAboveMediumScreens ? (
