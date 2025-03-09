@@ -28,10 +28,13 @@ const Home = () => {
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
             />
-            <Game setSelectedPage={setSelectedPage}/>
-            <Team setSelectedPage={setSelectedPage} />
-            <Faq setSelectedPage={setSelectedPage} />
-            <Footer setSelectedPage={setSelectedPage} />
+            <div className="md:pt-[20dvh]">
+                <Game setSelectedPage={setSelectedPage}/>
+                <Team setSelectedPage={setSelectedPage} />
+                <Faq setSelectedPage={setSelectedPage} />
+                <Footer setSelectedPage={setSelectedPage} />
+            </div>
+
         </div>
     )
 }

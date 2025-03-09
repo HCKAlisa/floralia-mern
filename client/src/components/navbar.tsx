@@ -11,40 +11,36 @@ type Props = {
 };
 
 const Navbar = ({isTopOfPage, selectedPage, setSelectedPage}: Props) => {
-    const flexBetween = "flex items-center justify-between";
+    const flexEnd = "flex items-end justify-end pb-2";
     const [isMenuToggled, setMenuToggled] = useState<boolean>(false);
     const isAboveMediumScreens: boolean = useMediaQuery("(min-width:1060px)");
-    const navBarBackground: string = isTopOfPage ? "" : "bg-primary-600 drop-shadow rounded-full py-3 px-4";
-
     return (
         <nav>
-            <div className={`${flexBetween} fixed top-0 z-50 w-[100dvw] md:w-full md:h-[25vh]`}>
-                <div className={` ${navBarBackground} ${flexBetween} mx-auto w-11/12`}>
-                    <div className={`${flexBetween} w-full gap-16`}>
-                        { isAboveMediumScreens ? (
-                            <div className={`${flexBetween} gap-8 text-sm`}>
-                                <Link
-                                    page="Home"
-                                    selectedPage={selectedPage}
-                                    setSelectedPage={setSelectedPage}
-                                />
-                                <Link page="Team"
-                                      selectedPage={selectedPage}
-                                      setSelectedPage={setSelectedPage}
-                                />
-                                <Link page="FAQ"
-                                      selectedPage={selectedPage}
-                                      setSelectedPage={setSelectedPage}
-                                />
-                                <Link page="Contact"
-                                      selectedPage={selectedPage}
-                                      setSelectedPage={setSelectedPage}
-                                />
-                            </div>
-                        ) : (
-                            <button title="Open Menu" className="rounded-full bg-orange-100 p-2" onClick={()=> setMenuToggled(!isMenuToggled)}><Bars3Icon className="h-6 w-6 text-white"/></button>
-                        )}
-                    </div>
+            <div className={`${flexEnd} bg-blue-100 drop-shadow px-10 fixed top-0 z-50 w-[100dvw] md:w-full md:h-[20vh]`}>
+                <div className={`${flexEnd} w-full gap-16`}>
+                    { isAboveMediumScreens ? (
+                        <div className={`${flexEnd} gap-8 text-sm`}>
+                            <Link
+                                page="Home"
+                                selectedPage={selectedPage}
+                                setSelectedPage={setSelectedPage}
+                            />
+                            <Link page="Team"
+                                  selectedPage={selectedPage}
+                                  setSelectedPage={setSelectedPage}
+                            />
+                            <Link page="FAQ"
+                                  selectedPage={selectedPage}
+                                  setSelectedPage={setSelectedPage}
+                            />
+                            <Link page="Contact"
+                                  selectedPage={selectedPage}
+                                  setSelectedPage={setSelectedPage}
+                            />
+                        </div>
+                    ) : (
+                        <button title="Open Menu" className="rounded-full bg-orange-100 p-2" onClick={()=> setMenuToggled(!isMenuToggled)}><Bars3Icon className="h-6 w-6 text-white"/></button>
+                    )}
                 </div>
             </div>
 
