@@ -62,31 +62,43 @@ const TeamList: TeamType[] = [
 const FaqList: FaqType[] = [
     {
         question: "What is Floralia?",
-        answer: "sdfsdf"
+        answer: "Floralia Games is a small indie team of passionate game developers. We are currently working on our first game - BloomTale, a cozy flower shop game."
     },
     {
         question: "When will BloomTale be released??",
-        answer: "sdfsdf"
+        answer: "Early Access is planned for July 2025."
     },
     {
         question: "Is BloomTale a paid game?",
-        answer: "sdfsdf"
+        answer: "Yes, the price is undecided."
+    },
+    {
+        question: "How do I keep updated with BloomTale's progress?",
+        answer: "Follow us on social medias and join our Discord server to stay up to date."
     },
     {
         question: "What platforms will BloomTale be on?",
-        answer: "sdfsdf"
+        answer: "Steam, App Store, and Play Store are confirmed."
     },
     {
         question: "Can I play BloomTale on a Mac and Windows?",
-        answer: "sdfsdf"
+        answer: "Mac and Windows are confirmed. Linux is not supported."
     },
     {
         question: "Can I play BloomTale on a mobile?",
-        answer: "sdfsdf"
+        answer: "Yes, it is planned for future after Steam release."
     },
     {
         question: "Can I play BloomTale with a controller?",
-        answer: "sdfsdf"
+        answer: "No, BloomTale is mostly an interactive UI game designed for mouse interaction with touchscreen on mobile."
+    },
+    {
+        question: "Can I play BloomTale on a Nintendo Switch or Steam Deck?",
+        answer: "TBD"
+    },
+    {
+        question: "What are the supported languages for BloomTale?",
+        answer: "English, Spanish, Portuguese, Polish, Turkish, Latin, Chinese (Simplified), and Korean are confirmed. Open for suggestions."
     },
 ]
 

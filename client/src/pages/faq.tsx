@@ -8,10 +8,16 @@ type Props = {
 }
 
 const Faq = ({setSelectedPage}: Props) => {
-    const [isDropdownToggled, setDropdownToggled] = useState<boolean>(false);
-    const [toggledIndex, setToggledIndex] = useState<number>(0);
+    const [dropdownToggledIndex, setDropdownToggledIndex] = useState<number | null>(null);
+    const handleDropdownToggle = (index: number): void => {
+        if (index === dropdownToggledIndex) {
+            setDropdownToggledIndex(null);
+            return;
+        }
+        setDropdownToggledIndex(index);
+    }
     return (
-        <section id="game">
+        <section id="faq">
             <motion.div
                 className=" bg-[url(assets/mainBg.png)] md:h-[80dvh]"
                 onViewportEnter={() => setSelectedPage(SelectedPage.FAQ)}
@@ -28,13 +34,13 @@ const Faq = ({setSelectedPage}: Props) => {
                     }}
                 >
                     <h1 className="py-6 text-4xl text-[#4C3F3F]">FAQ</h1>
-                    <div className="md:w-3/5 justify-center items-center grid grid-cols-2 gap-4">
+                    <div className="md:w-4/6 justify-center items-center grid grid-cols-2 gap-4">
                         { FaqList.map((item: FaqType, index: number) => (
-                            <div className="z-10">
-                                <button id={`faq-q-${index}`} className="bg-white rounded-3xl w-full" onClick={()=> setDropdownToggled(!isDropdownToggled)} >
+                            <div className="z-10 md:py-2">
+                                <button id={`faq-q-${index}`} className="bg-white rounded-3xl w-full" onClick={()=> handleDropdownToggle(index)} >
                                     <h6 className="py-8 text-xl">{item.question}</h6>
                                 </button>
-                                {isDropdownToggled && (
+                                {dropdownToggledIndex===index && (
                                     <div id={`faq-a-${index}`} className="bg-white rounded-3xl my-2">
                                         <h6 className="py-8 text-xl">{item.answer}</h6>
                                     </div>
