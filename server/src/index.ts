@@ -1,25 +1,39 @@
-// @ts-ignore
 import express from "express";
 import mongoose from "mongoose";
-// @ts-ignore
 import dotenv from "dotenv";
 const port = 5000;
+
+import type { Request, Response } from "express";
+
+import userRoutes from "./routes/user.routes.ts";
+import authRoutes from "./routes/auth.route.ts";
 
 dotenv.config();
 
 const app = express();
 
-mongoose.connect(process.env.MONGODB)
-    .then(()=> {
-        console.log("MongoDB Connected Successfully!");
-    }).catch(err=>{
-        console.log(err);
-});
+app.use(express.json());
 
-app.get('/', (req, res) => {
+if (process.env.MONGODB !== undefined) {
+    mongoose.connect(process.env.MONGODB)
+        .then(()=> {
+            console.log("MongoDB Connected Successfully!");
+
+            app.listen(port, () => {
+                console.log(`App listening on port ${port}`)
+            })
+
+        }).catch((err: any)=>{
+        console.log(err);
+    });
+}
+
+
+
+app.get('/', (req: Request, res: Response) => {
     res.send('Hello World!')
 })
 
-app.listen(port, () => {
-    console.log(`App listening on port ${port}`)
-})
+app.use("/api/user", (userRoutes));
+app.use("/api/auth", (authRoutes));
+
