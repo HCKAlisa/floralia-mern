@@ -29,3 +29,8 @@ export interface GameType {
     steam: string;
     released: boolean;
 }
+
+export interface UserType {
+    username?: string;
+    password?: string;
+}
