@@ -14,19 +14,18 @@ const app = express();
 
 app.use(express.json());
 
-if (process.env.MONGODB !== undefined) {
-    mongoose.connect(process.env.MONGODB)
-        .then(()=> {
-            console.log("MongoDB Connected Successfully!");
+mongoose.connect(process.env.MONGODB!)
+    .then(()=> {
+        console.log("MongoDB Connected Successfully!");
 
-            app.listen(port, () => {
-                console.log(`App listening on port ${port}`)
-            })
+        app.listen(port, () => {
+            console.log(`App listening on port ${port}`)
+        })
 
-        }).catch((err: any)=>{
-        console.log(err);
-    });
-}
+    }).catch((err: any)=>{
+    console.log(err);
+});
+
 
 
 

@@ -1,7 +1,9 @@
 import type {NextFunction, Request, Response} from 'express';
 import User from "../models/user.ts";
-import { genSaltSync, hashSync } from "bcrypt-ts";
+import { genSaltSync, hashSync, compareSync } from "bcrypt-ts";
 import {errorHandler} from "../utils/error.ts";
+import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 
 /*
 asyncHandler is a utility function that takes another function (fn) as an argument and returns a middleware function compatible with Express.
@@ -30,6 +32,46 @@ export const signup = asyncHandler(async (req: Request, res: Response, next: Nex
     try{
         await newUser.save();
         res.json({ message: 'User successfully created!' });
+    } catch (error: any) {
+        next(error);
+    }
+});
+
+export const signin = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    const { username, password } = req.body;
+
+    if (!username || !password || username === "" || password === "" ) {
+        return next(errorHandler('400', 'All fields are required'));
+    }
+
+    try{
+        const validUser = await User.findOne({ username });
+
+        if (!validUser) {
+            return next(errorHandler('404', 'User not found'));
+        }
+
+        const hashedPassword = validUser!.password;
+        const isValidPassword = compareSync(password, hashedPassword);
+
+        if (!isValidPassword) {
+            return next(errorHandler('400', 'Invalid password'));
+        }
+
+        const token = jwt.sign(
+            {
+                id: validUser!._id
+            },
+            process.env.JWT_SECRET!,
+            {expiresIn: '1d'}
+        );
+
+        const { password: dbPassword, ... rest} = (validUser as mongoose.Document & { password?: string }).toObject();
+
+        res.status(200)
+            .cookie('access_token', token, {httpOnly: true})
+            .json(rest);
+
     } catch (error: any) {
         next(error);
     }
