@@ -17,10 +17,15 @@ const UserSchema = new Schema({
     password: {
         type: String,
         required: true,
-    }},
+    },
+    profilePicture: {
+        type: String,
+        default: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"
+    }
+    },
     {timestamps: true}
 );
 
-const User = mongoose.model('User', UserSchema);
+const UserModel = mongoose.model('User', UserSchema);
 
-export default User;
+export default UserModel;

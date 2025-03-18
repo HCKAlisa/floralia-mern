@@ -2,13 +2,14 @@ import logo from "../../assets/logo.png";
 import {UserType} from "../../shared/types";
 import {useState} from "react";
 import { useNavigate } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
+import { signInStart, signInFailure, signInSuccess } from "../../redux/user/userSlice.ts";
+import { useDispatch, useSelector } from 'react-redux';
+import OAuth from "../../components/OAuth";
 
 const Signin = () => {
     const [formData, setFormData] = useState<UserType>();
-    const [errorMessage, setErrorMessage] = useState<string | null>(null);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    // const dispatch = useDispatch();
+    const {isLoading , error: errorMessage } = useSelector(state => state.user);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const handleChange = (e: any) => {
@@ -17,24 +18,28 @@ const Signin = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         if (formData==undefined || !formData.username || !formData.password){
-            return setErrorMessage('Please fill in all fields.');
+            return dispatch(signInFailure('Please fill in all fields.'));
         }
-            setErrorMessage(null);
+
         try {
-            setIsLoading(true);
-            const res = await fetch('/api/auth/signin', {
+            dispatch(signInStart());
+            const res: Response = await fetch('/api/auth/signin', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(formData),
             });
-            setIsLoading(false);
+
+            const data: any = await res.json();
+            if (data.success === false) {
+                dispatch(signInFailure(data.message));
+            }
+
             if (res.ok) {
-                // dispatch(signInSuccess(data));
+                dispatch(signInSuccess(data));
                 navigate('/');
             }
         } catch (error: any) {
-            setErrorMessage(error.message);
-            setIsLoading(false);
+            dispatch(signInFailure(error.message));
         }
     };
 
@@ -57,7 +62,7 @@ const Signin = () => {
                     { errorMessage && (
                         <h6 className='text-red-700'>{errorMessage}</h6>
                     )}
-                    <button type="submit" className="bg-gradient-to-tr bg-emerald-500 p-2 text-base rounded-lg disabled:bg-gray-300 disabled:p-3" disabled={isLoading}>
+                    <button type="submit" className="shadow-md shadow-emerald-600 hover:shadow-sm bg-emerald-500 p-2 text-base rounded-lg disabled:bg-gray-300 disabled:p-3" disabled={isLoading}>
                         {isLoading ? (
                             <div id="spinner-container" className="space-y-10">
                                 <div className="flex justify-center space-x-1">
@@ -68,6 +73,7 @@ const Signin = () => {
                             </div>
                         ): 'Sign In'}
                     </button>
+                    <OAuth />
                 </form>
             </div>
         </div>

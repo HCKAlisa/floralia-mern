@@ -1,5 +1,5 @@
 import type {NextFunction, Request, Response} from 'express';
-import User from "../models/user.ts";
+import User from "../models/user.model.ts";
 import { genSaltSync, hashSync, compareSync } from "bcrypt-ts";
 import {errorHandler} from "../utils/error.ts";
 import jwt from "jsonwebtoken";
@@ -74,5 +74,38 @@ export const signin = asyncHandler(async (req: Request, res: Response, next: Nex
 
     } catch (error: any) {
         next(error);
+    }
+});
+
+export const google = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
+    const {email, name, googlePhotoUrl} = req.body;
+    try {
+        const user = await User.findOne({email});
+        if (user){
+            const token = jwt.sign({id: user._id}, process.env.JWT_SECRET!, {expiresIn: '1d'});
+            const { password, ... rest} = (user as mongoose.Document & { password?: string }).toObject();
+            res.status(200)
+                .cookie('access_token', token, {httpOnly: true})
+                .json(rest);
+        } else {
+            next(errorHandler('404', 'No User Account'));
+            // const generatedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
+            // const salt = genSaltSync(10);
+            // const hashedPassword = hashSync(generatedPassword, salt);
+            // const newUser = new User({
+            //     username: name.toLowerCase().split(" ").join("") + Math.random().toString(9).slice(-4),
+            //     email,
+            //     password: hashedPassword,
+            //     profilePicture: googlePhotoUrl
+            // });
+            // await newUser.save();
+            // const token = jwt.sign({id: newUser._id}, process.env.JWT_SECRET!, {expiresIn: '1d'});
+            // const { password, ... rest} = (newUser as mongoose.Document & { password?: string }).toObject();
+            // res.status(200)
+            //     .cookie('access_token', token, {httpOnly: true})
+            //     .json(rest);
+        }
+    }catch (e) {
+        next(e);
     }
 });

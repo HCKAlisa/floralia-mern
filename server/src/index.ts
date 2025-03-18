@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-const port = 3000;
+const port = 8080;
 
 import type { Request, Response, NextFunction } from "express";
 
