@@ -1,7 +1,7 @@
 import type {NextFunction, Request, Response} from 'express';
 import User from "../models/user.model.ts";
 import { genSaltSync, hashSync, compareSync } from "bcrypt-ts";
-import {errorHandler} from "../utils/error.ts";
+import { errorHandler } from "../utils/error.ts";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
 

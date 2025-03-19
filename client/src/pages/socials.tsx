@@ -9,7 +9,7 @@ type Props = {
 
 const Socials = ({setSelectedPage}: Props) => {
     return (
-        <section id="game">
+        <section id="contact">
             <motion.div
                 className=" bg-[url(assets/mainBg.png)] md:h-[25dvh]"
                 onViewportEnter={() => setSelectedPage(SelectedPage.Contact)}

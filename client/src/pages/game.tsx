@@ -25,7 +25,7 @@ const Game = ({setSelectedPage}: Props) => {
     };
 
     return (
-        <section id="games">
+        <section id="home">
             <motion.div
                 className=" bg-[url(assets/mainBg.png)] md:h-[80dvh]"
                 onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
@@ -42,7 +42,7 @@ const Game = ({setSelectedPage}: Props) => {
                     }}
                 >
                     <h1 className="py-6 text-4xl text-[#4C3F3F]">Game</h1>
-                    { GameList.filter((item:GameType ,index: number) => index === currentGame).map((item: GameType, index: number) => (
+                    { GameList.filter((_item:GameType ,index: number) => index === currentGame).map((item: GameType, index: number) => (
                         <div className="relative aspect-video md:h-[60dvh] rounded-4xl overflow-hidden">
                             <div id={`game-${index}`} className={overlayStyles}>
                                 <h3 className="text-4xl">{item.name}</h3>

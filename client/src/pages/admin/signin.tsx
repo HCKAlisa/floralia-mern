@@ -8,7 +8,7 @@ import OAuth from "../../components/OAuth";
 
 const Signin = () => {
     const [formData, setFormData] = useState<UserType>();
-    const {isLoading , error: errorMessage } = useSelector(state => state.user);
+    const {isLoading , error: errorMessage } = useSelector((state: any) => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -36,7 +36,7 @@ const Signin = () => {
 
             if (res.ok) {
                 dispatch(signInSuccess(data));
-                navigate('/');
+                navigate('/admin');
             }
         } catch (error: any) {
             dispatch(signInFailure(error.message));

@@ -1,5 +1,5 @@
 export enum SelectedPage {
-    Home = "games",
+    Home = "home",
     Team = "team",
     FAQ = "faq",
     Contact = "contact"

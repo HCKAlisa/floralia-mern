@@ -26,10 +26,9 @@ const OAuth = () => {
             const data = await res.json()
             if (res.ok){
                 dispatch(signInSuccess(data))
-                navigate('/')
+                navigate('/admin')
             }
         } catch (error) {
-            console.log("afadfs")
             console.log(error);
         }
     }
