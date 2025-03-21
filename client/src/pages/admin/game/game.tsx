@@ -15,7 +15,8 @@ import {
     extractClosestEdge,
 } from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
 import { DropIndicator } from '../../../components/drop-indicator.tsx';
-import { getGameData, isGameData, type TGame } from './Game-data';
+import { getGameData, isGameData } from './../../../shared/data.ts';
+import {GameType} from "./../../../shared/types";
 
 type GameState =
     | {
@@ -39,7 +40,7 @@ const stateStyles: { [Key in GameState['type']]?: HTMLAttributes<HTMLDivElement>
 
 const idle: GameState = { type: 'idle' };
 
-export function Game({ Game }: { Game: TGame }) {
+export function Game({ Game }: { Game: GameType }) {
     const ref = useRef<HTMLDivElement | null>(null);
     const [state, setState] = useState<GameState>(idle);
 
@@ -130,7 +131,7 @@ export function Game({ Game }: { Game: TGame }) {
                     <div className="w-6 flex justify-center">
                         <FaGripLines size={10} />
                     </div>
-                    <span className="truncate flex-grow flex-shrink">{Game.content}</span>
+                    <span className="truncate flex-grow flex-shrink">{Game.name}</span>
                 </div>
                 {state.type === 'is-dragging-over' && state.closestEdge ? (
                     <DropIndicator edge={state.closestEdge} gap={'8px'} />
@@ -142,6 +143,6 @@ export function Game({ Game }: { Game: TGame }) {
 }
 
 // A simplified version of our Game for the user to drag around
-function DragPreview({ Game }: { Game: TGame }) {
-    return <div className="border-solid rounded p-2 bg-white">{Game.content}</div>;
+function DragPreview({ Game }: { Game: GameType }) {
+    return <div className="border-solid rounded p-2 bg-white">{Game.name}</div>;
 }
