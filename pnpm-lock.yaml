@@ -7,10 +7,11 @@ settings:
 importers:
 
   .:
-    devDependencies:
+    dependencies:
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@22.13.11)(typescript@5.8.2)
+    devDependencies:
       tsx:
         specifier: ^4.19.3
         version: 4.19.3
