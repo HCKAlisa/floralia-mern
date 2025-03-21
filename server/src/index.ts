@@ -1,5 +1,5 @@
 import express from "express";
-import mongoose from "mongoose";
+import mongoose, {ConnectOptions} from "mongoose";
 import dotenv from "dotenv";
 const port = 8080;
 import path from "path";
@@ -15,7 +15,7 @@ const app = express();
 
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB!)
+mongoose.connect(process.env.MONGODB!,{ useNewUrlParser: true } as ConnectOptions)
     .then(()=> {
         console.log("MongoDB Connected Successfully!");
 
