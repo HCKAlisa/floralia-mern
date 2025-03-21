@@ -1,7 +1,6 @@
 {
   "name": "FloraliaMERN",
   "version": "1.0.0",
-  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,7 +12,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "ts-node": "^10.9.2",
     "tsx": "^4.19.3",
-    "ts-node": "^10.9.2"
+    "typescript": "^5.8.2"
   }
 }

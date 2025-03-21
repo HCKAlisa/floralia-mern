@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 const port = 8080;
 import path from "path";
 
+import type { ConnectOptions } from "mongoose";
 import type { Request, Response, NextFunction } from "express";
 
 import userRoutes from "./src/routes/user.routes.ts";
@@ -15,7 +16,13 @@ const app = express();
 
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB!)
+const uri = process.env.MONGODB || 'default-connection-string';
+
+
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+} as ConnectOptions)
     .then(()=> {
         console.log("MongoDB Connected Successfully!");
 
@@ -43,7 +50,7 @@ app.get('*', (_req, res) => {
 })
 
 //error middleware
-app.use((err: any, req: Request, res: Response, next: NextFunction)=>{
+app.use((err: any, _req: Request, res: Response, _next: NextFunction)=>{
     const statusCode = err.statusCode || 500;
     const message = err.message || "Internal Server Error";
     res.status(statusCode).json({
