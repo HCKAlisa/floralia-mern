@@ -26,7 +26,7 @@ const OAuth = () => {
             const data = await res.json()
             if (res.ok){
                 dispatch(signInSuccess(data))
-                navigate('/admin')
+                navigate('/admin?tab=Dashboard')
             }
         } catch (error) {
             console.log(error);

@@ -9,9 +9,23 @@ import sion from "../assets/Icons/sion.png"
 import yuki from "../assets/Icons/yuki.png"
 import joshua from "../assets/Icons/joshua.png"
 
+const gameDataKey = Symbol('game');
+export type TGameData = { [gameDataKey]: true; gameId: GameType['id'] };
+
+export const getGames = (): GameType[] => {
+    return GameList;
+}
+
+export const getGameData = (game: GameType) => {
+    return { [gameDataKey]: true, gameId: game.id };
+}
+
+export const isGameData = (data: Record<string | symbol, unknown>): data is TGameData => {
+    return data[gameDataKey] === true; }
 
 const GameList: GameType[] = [
     {
+        id: "1",
         name: "BloomTale",
         socials: [
             {

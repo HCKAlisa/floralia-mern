@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 const port = 8080;
+import path from "path";
 
 import type { Request, Response, NextFunction } from "express";
 
@@ -26,15 +27,20 @@ mongoose.connect(process.env.MONGODB!)
     console.log(err);
 });
 
+const __dirname = path.resolve();
 
 
-
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (_req: Request, res: Response) => {
     res.send('Hello World!')
 })
 
 app.use("/api/user", (userRoutes));
 app.use("/api/auth", (authRoutes));
+
+app.use(express.static(path.join(__dirname, '/client/dist')));
+app.get('*', (_req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+})
 
 //error middleware
 app.use((err: any, req: Request, res: Response, next: NextFunction)=>{

@@ -36,7 +36,7 @@ const Signin = () => {
 
             if (res.ok) {
                 dispatch(signInSuccess(data));
-                navigate('/admin');
+                navigate('/admin?tab=Dashboard');
             }
         } catch (error: any) {
             dispatch(signInFailure(error.message));

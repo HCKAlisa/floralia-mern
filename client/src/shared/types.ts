@@ -23,6 +23,7 @@ export interface SocialsType {
 }
 
 export interface GameType {
+    id: string;
     name: string;
     media: string;
     socials: SocialsType[];
