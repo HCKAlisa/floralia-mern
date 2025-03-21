@@ -6,8 +6,8 @@ import path from "path";
 
 import type { Request, Response, NextFunction } from "express";
 
-import userRoutes from "./routes/user.routes.ts";
-import authRoutes from "./routes/auth.route.ts";
+import userRoutes from "./src/routes/user.routes.ts";
+import authRoutes from "./src/routes/auth.route.ts";
 
 dotenv.config();
 
