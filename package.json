@@ -6,10 +6,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.ts",
+    "start": "tsx server/index.ts",
     "build": "npm install --legacy-peer-deps --prefix client && npm install --prefix server && npm run build --prefix client "
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "tsx": "^4.19.3"
+  }
 }
