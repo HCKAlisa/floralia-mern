@@ -7,8 +7,8 @@ import path from "path";
 import type { ConnectOptions } from "mongoose";
 import type { Request, Response, NextFunction } from "express";
 
-import userRoutes from "./routes/user.routes.ts";
-import authRoutes from "./routes/auth.routes.ts";
+import userRoutes from "./src/routes/user.routes.ts";
+import authRoutes from "./src/routes/auth.routes.ts";
 
 dotenv.config();
 
@@ -44,7 +44,7 @@ app.get('/', (_req: Request, res: Response) => {
 app.use("/api/user", (userRoutes));
 app.use("/api/auth", (authRoutes));
 
-app.use(express.static(path.join(__dirname, '../../client/dist')));
+app.use(express.static(path.join(__dirname, 'client/dist')));
 app.get('*', (_req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 })
