@@ -25,11 +25,11 @@ const Team = ({setSelectedPage}: Props) => {
                     }}
                 >
                     <h1 className="py-6 text-4xl text-[#4C3F3F]">Team</h1>
-                        <div className="md:w-3/5 flex flex-col md:flex-row justify-center items-center flex-wrap gap-16">
+                        <div className="md:w-3/5 w-11/12 flex md:flex-row justify-center items-center flex-wrap md:gap-16 gap-2">
                             { TeamList.map((item: TeamType, index: number) => (
-                                <div id={`team-${index}`}>
+                                <div id={`team-${index}`} className="md:w-max w-2/5" >
                                     <img alt={`${item.image}`} src={item.image}/>
-                                    <h6 className="pt-2 text-3xl">{item.name}</h6>
+                                    <h6 className="pt-2 md:text-3xl">{item.name}</h6>
                                     <h6 className="pb-2">{item.title}</h6>
                                 </div>
 

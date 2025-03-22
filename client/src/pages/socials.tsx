@@ -25,11 +25,11 @@ const Socials = ({setSelectedPage}: Props) => {
                         visible: {opacity: 1, y: 0}
                     }}
                 >
-                    <div className="flex flex-col justify-center items-center w-full">
-                        <img alt="Floralia Logo" src={logo} className="mt-[-10dvh]"/>
+                    <div className="flex flex-col justify-center items-center w-full md:py-0 py-4">
+                        <img alt="Floralia Logo" src={logo} className="md:mt-[-10dvh]"/>
                         <div className="flex justify-center items-center w-full gap-4 py-6">
                             {SocialList.map((item: SocialsType) => (
-                                <a href={item.url}><img alt={item.name} src={item.image} className="aspect-square h-[8dvh]"/></a>
+                                <a href={item.url}><img alt={item.name} src={item.image} className="aspect-square md:h-[8dvh] h-[5dvh]"/></a>
                             ))}
                         </div>
                         <p>© All Rights Reserved Floralia Studio 2025</p>

@@ -9,8 +9,8 @@ type Props = {
 }
 
 const Game = ({setSelectedPage}: Props) => {
-    const overlayStyles = `p-5 absolute z-30 bottom-0 h-[20dvh] w-full flex flex-col items-center justify-center 
-  whitespace-normal bg-[#D9D9D9]/75 text-center rounded-4xl`;
+    const overlayStyles = `p-5 absolute z-30 bottom-0 md:h-[20dvh] h-[12dvh] w-full flex flex-col items-center justify-center 
+  whitespace-normal bg-[#D9D9D9]/75 text-center md:rounded-4xl rounded-2xl`;
     const [currentGame, setCurrentGame] = useState<number>(0);
 
     const handleNextOrPrevious = (next: boolean) => {
@@ -31,7 +31,7 @@ const Game = ({setSelectedPage}: Props) => {
                 onViewportEnter={() => setSelectedPage(SelectedPage.Home)}
             >
                 <motion.div
-                    className="mx-auto flex flex-col items-center justify-center"
+                    className="mx-auto flex flex-col items-center justify-center md:w-full w-11/12"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{once:true, amount: 0.5}}
@@ -43,7 +43,7 @@ const Game = ({setSelectedPage}: Props) => {
                 >
                     <h1 className="py-6 text-4xl text-[#4C3F3F]">Game</h1>
                     { GameList.filter((_item:GameType ,index: number) => index === currentGame).map((item: GameType, index: number) => (
-                        <div className="relative aspect-video md:h-[60dvh] rounded-4xl overflow-hidden">
+                        <div className="relative aspect-video md:h-[60dvh] md:rounded-4xl rounded-2xl overflow-hidden">
                             <div id={`game-${index}`} className={overlayStyles}>
                                 <h3 className="text-4xl">{item.name}</h3>
                                 <div className="flex gap-4 md:py-6">
@@ -63,7 +63,8 @@ const Game = ({setSelectedPage}: Props) => {
                                     <button type="button" onClick={() => handleNextOrPrevious(true)}><ChevronRightIcon className="size-16 text-[#D9D9D9]/75" /></button>
                                 </div>
                             )}
-                            <img alt={`${item.media}`} src={item.media} className="w-full"/>
+                            {/*<img alt={`${item.media}`} src={item.media} className="w-full"/>*/}
+                            <video className="w-full" loop muted autoPlay id={`video-game-${index}`} src={item.media}/>
                         </div>
                     ))}
                 </motion.div>

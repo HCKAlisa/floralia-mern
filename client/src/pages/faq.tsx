@@ -19,7 +19,7 @@ const Faq = ({setSelectedPage}: Props) => {
     return (
         <section id="faq">
             <motion.div
-                className=" bg-[url(assets/mainBg.png)] md:h-[80dvh]"
+                className=" bg-[url(assets/mainBg.png)] md:h-[80dvh] h-full"
                 onViewportEnter={() => setSelectedPage(SelectedPage.FAQ)}
             >
                 <motion.div
@@ -34,14 +34,14 @@ const Faq = ({setSelectedPage}: Props) => {
                     }}
                 >
                     <h1 className="py-6 text-4xl text-[#4C3F3F]">FAQ</h1>
-                    <div className="md:w-4/6 justify-center items-center grid grid-cols-2 gap-4">
+                    <div className="md:w-4/6 w-11/12 justify-center items-center grid md:grid-cols-2 gap-4">
                         { FaqList.map((item: FaqType, index: number) => (
                             <div className="z-10 md:py-2">
                                 <button id={`faq-q-${index}`} className="bg-white rounded-3xl w-full" onClick={()=> handleDropdownToggle(index)} >
-                                    <h6 className="py-8 text-xl">{item.question}</h6>
+                                    <h6 className="py-8 px-2 text-xl">{item.question}</h6>
                                 </button>
                                 {dropdownToggledIndex===index && (
-                                    <div id={`faq-a-${index}`} className="bg-white rounded-3xl my-2">
+                                    <div id={`faq-a-${index}`} className="bg-blue-200 rounded-3xl my-2 px-2">
                                         <h6 className="py-8 text-xl">{item.answer}</h6>
                                     </div>
                                 )}

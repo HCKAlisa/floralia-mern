@@ -1,5 +1,6 @@
 import {TeamType, GameType, FaqType, SocialsType} from "./types.ts";
-import bloomtale from "../assets/videoPlaceholder.png"
+//import bloomtale from "../assets/videoPlaceholder.png"
+import bloomtaleVideo from "../assets/Videos/gameplayTralier.mp4"
 import ins from "../assets/Icons/instagram.png"
 import steam from "../assets/Icons/steam.png"
 import discord from "../assets/Icons/discord.png"
@@ -39,7 +40,7 @@ const GameList: GameType[] = [
                 url: "https://discord.com/invite/xHBexRWwdv?fbclid=PAZXh0bgNhZW0CMTEAAaYXRe6giX0f7_ed1atA1TvuQsrZd_pDz9qPSuCBYdp1ol0qW9vVQr4lb6w_aem_IzOfHwS2rwsdJ5GavB9mpQ"
             }
         ],
-        media: bloomtale,
+        media: bloomtaleVideo,
         steam: "https://store.steampowered.com/app/3168520/BloomTale/",
         released: false,
     }

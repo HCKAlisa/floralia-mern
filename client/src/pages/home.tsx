@@ -28,7 +28,7 @@ const Home = () => {
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
             />
-            <div className="md:pt-[20dvh]">
+            <div className="md:pt-[20dvh] pt-[10dvh]">
                 <Game setSelectedPage={setSelectedPage}/>
                 <Team setSelectedPage={setSelectedPage} />
                 <Faq setSelectedPage={setSelectedPage} />

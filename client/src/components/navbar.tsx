@@ -16,7 +16,7 @@ const Navbar = ({selectedPage, setSelectedPage}: Props) => {
     const isAboveMediumScreens: boolean = useMediaQuery("(min-width:1060px)");
     return (
         <nav>
-            <div className={`${flexEnd} bg-blue-100 drop-shadow px-10 fixed top-0 z-50 w-[100dvw] md:w-full md:h-[20vh]`}>
+            <div className={`${flexEnd} bg-blue-100 drop-shadow px-10 fixed top-0 z-50 w-[100dvw] md:w-full md:h-[20dvh] h-[10dvh]`}>
                 <div className={`${flexEnd} w-full gap-16`}>
                     { isAboveMediumScreens ? (
                         <div className={`${flexEnd} gap-8 text-sm`}>
@@ -46,7 +46,7 @@ const Navbar = ({selectedPage, setSelectedPage}: Props) => {
 
             {/* MOBILE MENU MODAL*/}
             {!isAboveMediumScreens && isMenuToggled && (
-                <div className="fixed right-0 bottom-0 z-[120] h-full w-[300px] bg-primary-600 drop-shadow-xl">
+                <div className="fixed right-0 bottom-0 z-[120] h-full w-[200px] bg-blue-200 drop-shadow-xl">
                     <div className="flex justify-end p-12">
                         <button title="Close Menu" onClick={()=> setMenuToggled(!isMenuToggled)}><XMarkIcon className="h-6 w-6 text-white"/></button>
                     </div>
