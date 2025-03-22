@@ -37,9 +37,9 @@ mongoose.connect(uri, {
 const __dirname = path.resolve();
 
 
-app.get('/', (_req: Request, res: Response) => {
-    res.send('Hello World!')
-})
+// app.get('/', (_req: Request, res: Response) => {
+//     res.send('Hello World!')
+// })
 
 app.use("/api/user", (userRoutes));
 app.use("/api/auth", (authRoutes));
