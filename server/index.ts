@@ -44,10 +44,11 @@ const __dirname = path.resolve();
 app.use("/api/user", (userRoutes));
 app.use("/api/auth", (authRoutes));
 
-app.use(express.static(path.join(__dirname, '../../client/dist')));
-app.get('*', (_req, res) => {
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
-})
+});
 
 //error middleware
 app.use((err: any, _req: Request, res: Response, _next: NextFunction)=>{
