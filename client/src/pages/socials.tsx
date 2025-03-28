@@ -32,7 +32,7 @@ const Socials = ({setSelectedPage}: Props) => {
                                 <a href={item.url}><img alt={item.name} src={item.image} className="aspect-square md:h-[8dvh] h-[5dvh]"/></a>
                             ))}
                         </div>
-                        <p>© All Rights Reserved Floralia Studio 2025</p>
+                        <p>© All Rights Reserved Floralia Games 2025</p>
                     </div>
                 </motion.div>
             </motion.div>
