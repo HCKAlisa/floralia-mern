@@ -6,9 +6,20 @@ import { extractClosestEdge } from '@atlaskit/pragmatic-drag-and-drop-hitbox/clo
 import { reorderWithEdge } from '@atlaskit/pragmatic-drag-and-drop-hitbox/util/reorder-with-edge';
 import { triggerPostMoveFlash } from '@atlaskit/pragmatic-drag-and-drop-flourish/trigger-post-move-flash';
 import { flushSync } from 'react-dom';
+import {Game} from "./game.tsx";
+import { FaPlus } from "react-icons/fa";
+import {useSearchParams} from "react-router-dom";
 
 const GameList = () => {
     const [games, setGames] = useState<GameType[]>(() => getGames());
+    const [_searchParams, setSearchParams] = useSearchParams();
+
+    const changeTab = (newSession: string) => {
+        setSearchParams(params => {
+            params.set("tab", newSession);
+            return params;
+        });
+    };
 
     useEffect(() => {
         return monitorForElements({
@@ -62,8 +73,17 @@ const GameList = () => {
     }, [games]);
 
     return (
-        <div className="p-6">
-            <h1 className="text-4xl">Games</h1>
+        <div className="p-6 flex flex-col">
+            <h1 className="text-4xl p-8">Games</h1>
+            <div className="flex justify-end mx-45">
+                <button onClick={() =>changeTab('GameForm')} className="flex gap-4 bg-emerald-100 justify-center items-center py-4 px-10 rounded-lg shadow mb-4"><FaPlus /> Add</button>
+            </div>
+            <div className="flex flex-col items-center">
+                {games.map((game) => (
+                    <Game key={game.id} Game={game}/>
+                ))}
+            </div>
+
         </div>
     )
 }

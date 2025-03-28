@@ -24,10 +24,81 @@ export const getGameData = (game: GameType) => {
 export const isGameData = (data: Record<string | symbol, unknown>): data is TGameData => {
     return data[gameDataKey] === true; }
 
+const teamDataKey = Symbol('team');
+export type TTeamData = { [teamDataKey]: true; teamId: TeamType['id'] };
+
+export const getTeams = (): TeamType[] => {
+    return TeamList;
+}
+
+export const getTeamData = (team: TeamType) => {
+    return { [teamDataKey]: true, teamId: team.id };
+}
+
+export const isTeamData = (data: Record<string | symbol, unknown>): data is TTeamData => {
+    return data[gameDataKey] === true; }
+
 const GameList: GameType[] = [
     {
         id: "1",
         name: "BloomTale",
+        socials: [
+            {
+                name: "instagram",
+                image: ins,
+                url: "cd client"
+            },
+            {
+                name: "Discord",
+                image: discord,
+                url: "https://discord.com/invite/xHBexRWwdv?fbclid=PAZXh0bgNhZW0CMTEAAaYXRe6giX0f7_ed1atA1TvuQsrZd_pDz9qPSuCBYdp1ol0qW9vVQr4lb6w_aem_IzOfHwS2rwsdJ5GavB9mpQ"
+            }
+        ],
+        media: bloomtaleVideo,
+        steam: "https://store.steampowered.com/app/3168520/BloomTale/",
+        released: false,
+    },
+    {
+        id: "2",
+        name: "Test 2",
+        socials: [
+            {
+                name: "instagram",
+                image: ins,
+                url: "https://www.instagram.com/floralia_games?igsh=OXlucWsxeGJkeDJ3"
+            },
+            {
+                name: "Discord",
+                image: discord,
+                url: "https://discord.com/invite/xHBexRWwdv?fbclid=PAZXh0bgNhZW0CMTEAAaYXRe6giX0f7_ed1atA1TvuQsrZd_pDz9qPSuCBYdp1ol0qW9vVQr4lb6w_aem_IzOfHwS2rwsdJ5GavB9mpQ"
+            }
+        ],
+        media: bloomtaleVideo,
+        steam: "https://store.steampowered.com/app/3168520/BloomTale/",
+        released: false,
+    },
+    {
+        id: "3",
+        name: "Test 3",
+        socials: [
+            {
+                name: "instagram",
+                image: ins,
+                url: "https://www.instagram.com/floralia_games?igsh=OXlucWsxeGJkeDJ3"
+            },
+            {
+                name: "Discord",
+                image: discord,
+                url: "https://discord.com/invite/xHBexRWwdv?fbclid=PAZXh0bgNhZW0CMTEAAaYXRe6giX0f7_ed1atA1TvuQsrZd_pDz9qPSuCBYdp1ol0qW9vVQr4lb6w_aem_IzOfHwS2rwsdJ5GavB9mpQ"
+            }
+        ],
+        media: bloomtaleVideo,
+        steam: "https://store.steampowered.com/app/3168520/BloomTale/",
+        released: false,
+    },
+    {
+        id: "4",
+        name: "Test 4",
         socials: [
             {
                 name: "instagram",
@@ -48,26 +119,31 @@ const GameList: GameType[] = [
 
 const TeamList: TeamType[] = [
     {
+        id: "1",
         name:"Max Choi",
         title: "Programmer",
         image: max,
     },
     {
+        id: "2",
         name:"Hanna Dabrowska",
         title: "Artist",
         image: hanna,
     },
     {
+        id: "3",
         name:"Sion Kim",
         title: "Game Designer",
         image: sion,
     },
     {
+        id: "4",
         name:"Yuki Hu",
         title: "Narrative Designer",
         image: yuki,
     },
     {
+        id: "5",
         name:"Joshua Ingeneri",
         title: "Audio Designer",
         image: joshua,

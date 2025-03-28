@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import Dashboard from "./dashboard.tsx";
 import Game from "./game/list.tsx"
+import GameForm from "./game/form.tsx"
 import Team from "./team/list.tsx"
 import Faq from "./faq/list.tsx"
 import Contact from "./contact/list.tsx"
@@ -19,13 +20,16 @@ const Admin = () => {
     }, [location.search]);
 
     return (
-        <div className="w-full h-full flex">
+        <div className="w-full h-full flex flex-row">
             <Sidebar/>
-            { tab === 'Dashboard' && <Dashboard />}
-            { tab === 'Games' && <Game />}
-            { tab === 'Team' && <Team />}
-            { tab === 'FAQ' && <Faq />}
-            { tab === 'Contact' && <Contact />}
+            <div className="w-full">
+                { tab === 'Dashboard' && <Dashboard />}
+                { tab === 'Games' && <Game />}
+                { tab === 'GameForm' && <GameForm />}
+                { tab === 'Team' && <Team />}
+                { tab === 'FAQ' && <Faq />}
+                { tab === 'Contact' && <Contact />}
+            </div>
         </div>
     )
 }

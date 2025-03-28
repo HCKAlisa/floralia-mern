@@ -6,17 +6,20 @@ export enum SelectedPage {
 }
 
 export interface TeamType {
+    id: string;
     name: string;
     title: string;
     image: string;
 }
 
 export interface FaqType {
+    id?: string;
     question: string;
     answer: string;
 }
 
 export interface SocialsType {
+    id?: string;
     name: string;
     url: string;
     image?: string;

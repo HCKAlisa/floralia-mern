@@ -17,11 +17,11 @@ const Sidebar = () => {
     };
 
     return (
-        <div className="h-full w-[20dvw] bg-emerald-100 flex flex-col justify-between">
+        <div className="h-full w-[20dvw] bg-blue-100 flex flex-col justify-between">
             <div className="w-full">
-                <div className='flex flex-col items-center gap-2 py-6'>
+                <div className='flex flex-col items-center gap-2 py-6 px-2'>
                     <img alt='logo' src={logo} className='w-[8dvw]'/>
-                    <h1 className='text-3xl font-bold'>Floralia Admin Panel</h1>
+                    <h1 className='text-3xl font-bold'>Floralia<br/> Admin Panel</h1>
                 </div>
                 <div className="flex flex-col items-start">
                     <button onClick={() =>changeTab('Dashboard')} className="flex items-center gap-4 p-6 text-xl hover:bg-emerald-200 hover:shadow-sm hover:shadow-emerald-300/50 w-full text-start"><MdDashboard /> Dashboard</button>
@@ -31,7 +31,7 @@ const Sidebar = () => {
                     <button onClick={() =>changeTab('Contact')} className="flex items-center gap-4 p-6 text-xl hover:bg-emerald-200 hover:shadow-sm hover:shadow-emerald-300/50 w-full text-start"><RiContactsBook3Fill /> Contact</button>
                 </div>
             </div>
-            <div className="flex flex-col items-start bg-emerald-200">
+            <div className="flex flex-col items-start bg-blue-200">
                 <h3 className="text-2xl font-bold p-6">Username</h3>
             </div>
         </div>

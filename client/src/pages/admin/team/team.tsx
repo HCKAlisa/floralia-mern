@@ -15,12 +15,12 @@ import {
     extractClosestEdge,
 } from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
 import { DropIndicator } from '../../../components/drop-indicator.tsx';
-import { getGameData, isGameData } from './../../../shared/data.ts';
-import {GameType} from "./../../../shared/types";
+import { getTeamData, isTeamData } from './../../../shared/data.ts';
+import {TeamType} from "./../../../shared/types";
 import { ImBin } from "react-icons/im";
 import { FaPen } from "react-icons/fa";
 
-type GameState =
+type TeamState =
     | {
     type: 'idle';
 }
@@ -36,15 +36,15 @@ type GameState =
     closestEdge: Edge | null;
 };
 
-const stateStyles: { [Key in GameState['type']]?: HTMLAttributes<HTMLDivElement>['className'] } = {
+const stateStyles: { [Key in TeamState['type']]?: HTMLAttributes<HTMLDivElement>['className'] } = {
     'is-dragging': 'opacity-40',
 };
 
-const idle: GameState = { type: 'idle' };
+const idle: TeamState = { type: 'idle' };
 
-export function Game({ Game }: { Game: GameType }) {
+export function Team({ team }: { team: TeamType }) {
     const ref = useRef<HTMLDivElement | null>(null);
-    const [state, setState] = useState<GameState>(idle);
+    const [state, setState] = useState<TeamState>(idle);
 
     useEffect(() => {
         const element = ref.current;
@@ -53,7 +53,7 @@ export function Game({ Game }: { Game: GameType }) {
             draggable({
                 element,
                 getInitialData() {
-                    return getGameData(Game);
+                    return getTeamData(team);
                 },
                 onGenerateDragPreview({ nativeSetDragImage }) {
                     setCustomNativeDragPreview({
@@ -81,11 +81,11 @@ export function Game({ Game }: { Game: GameType }) {
                     if (source.element === element) {
                         return false;
                     }
-                    // only allowing Games to be dropped on me
-                    return isGameData(source.data);
+                    // only allowing Teams to be dropped on me
+                    return isTeamData(source.data);
                 },
                 getData({ input }) {
-                    const data = getGameData(Game);
+                    const data = getTeamData(team);
                     return attachClosestEdge(data, {
                         element,
                         input,
@@ -119,21 +119,21 @@ export function Game({ Game }: { Game: GameType }) {
                 },
             }),
         );
-    }, [Game]);
+    }, [Team]);
 
     return (
         <>
             <div className="relative">
                 <div
                     // Adding data-attribute as a way to query for this for our post drop flash
-                    data-Game-id={Game.id}
+                    data-Team-id={team.id}
                     ref={ref}
                     className={`flex px-4 w-[62dvw] h-[8dvh] text-sm shadow bg-white flex-row items-center rounded p-2 pl-0 hover:bg-slate-100 hover:cursor-grab gap-4 ${stateStyles[state.type] ?? ''}`}
                 >
                     <div className="w-12 flex justify-center">
                         <FaGripLines size={15} />
                     </div>
-                    <span className="truncate flex-grow flex-shrink text-xl">{Game.name}</span>
+                    <span className="truncate flex-grow flex-shrink text-xl">{team.name}</span>
                     <a><FaPen /></a>
                     <a><ImBin /></a>
                 </div>
@@ -141,12 +141,12 @@ export function Game({ Game }: { Game: GameType }) {
                     <DropIndicator edge={state.closestEdge} gap={'8px'} />
                 ) : null}
             </div>
-            {state.type === 'preview' ? createPortal(<DragPreview Game={Game} />, state.container) : null}
+            {state.type === 'preview' ? createPortal(<DragPreview Team={team} />, state.container) : null}
         </>
     );
 }
 
-// A simplified version of our Game for the user to drag around
-function DragPreview({ Game }: { Game: GameType }) {
-    return <div className="border-solid rounded p-2 bg-white">{Game.name}</div>;
+// A simplified version of our Team for the user to drag around
+function DragPreview({ Team }: { Team: TeamType }) {
+    return <div className="border-solid rounded p-2 bg-white">{Team.name}</div>;
 }
