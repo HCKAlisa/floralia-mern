@@ -4,6 +4,7 @@ import { MdAddCircle } from "react-icons/md";
 import { ImBin } from "react-icons/im";
 import { MdOutlineSaveAlt } from "react-icons/md";
 import { getGames } from './../../../shared/data.ts';
+import { getStorage } from 'firebase/storage';
 
 type Props = {
     game?: GameType | null;
@@ -46,42 +47,42 @@ const GameForm = ({game=null}: Props) => {
     // const [mediaUploadProgress, setVideoUploadProgress] = useState(null);
     // const [videoUploadError, setVideoUploadError] = useState(null);
     //
-    // const handleUpdloadMedia = async () => {
-    //     try {
-    //         if (!file) {
-    //             setVideoUploadError('Please select an image or video');
-    //             return;
-    //         }
-    //         setVideoUploadError(null);
-    //         const storage = getStorage(app);
-    //         const fileName = new Date().getTime() + '-' + file.name;
-    //         const storageRef = ref(storage, fileName);
-    //         const uploadTask = uploadBytesResumable(storageRef, file);
-    //         uploadTask.on(
-    //             'state_changed',
-    //             (snapshot) => {
-    //                 const progress =
-    //                     (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    //                 setVideoUploadProgress(progress.toFixed(0));
-    //             },
-    //             (error) => {
-    //                 setVideoUploadError('Video upload failed');
-    //                 setVideoUploadProgress(null);
-    //             },
-    //             () => {
-    //                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-    //                     setVideoUploadProgress(null);
-    //                     setVideoUploadError(null);
-    //                     setFormData({ ...formData, video: downloadURL });
-    //                 });
-    //             }
-    //         );
-    //     } catch (error) {
-    //         setVideoUploadError('Video upload failed');
-    //         setVideoUploadProgress(null);
-    //         console.log(error);
-    //     }
-    // };
+    const handleUpdloadMedia = async () => {
+        try {
+            if (!file) {
+                setVideoUploadError('Please select an image or video');
+                return;
+            }
+            setVideoUploadError(null);
+            const storage = getStorage(app);
+            const fileName = new Date().getTime() + '-' + file.name;
+            const storageRef = ref(storage, fileName);
+            const uploadTask = uploadBytesResumable(storageRef, file);
+            uploadTask.on(
+                'state_changed',
+                (snapshot) => {
+                    const progress =
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    setVideoUploadProgress(progress.toFixed(0));
+                },
+                (error) => {
+                    setVideoUploadError('Video upload failed');
+                    setVideoUploadProgress(null);
+                },
+                () => {
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        setVideoUploadProgress(null);
+                        setVideoUploadError(null);
+                        setFormData({ ...formData, video: downloadURL });
+                    });
+                }
+            );
+        } catch (error) {
+            setVideoUploadError('Video upload failed');
+            setVideoUploadProgress(null);
+            console.log(error);
+        }
+    };
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();

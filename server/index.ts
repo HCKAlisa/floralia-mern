@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 const port = process.env.PORT || 8080;
 import path from "path";
+import cookieParser from 'cookie-parser';
 
 import type { ConnectOptions } from "mongoose";
 import type { Request, Response, NextFunction } from "express";
@@ -15,6 +16,7 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
+app.use(cookieParser());
 
 const uri = process.env.MONGODB || 'default-connection-string';
 
