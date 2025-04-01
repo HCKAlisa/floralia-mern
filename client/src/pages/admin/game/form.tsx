@@ -1,10 +1,11 @@
 import {GameType} from "./../../../shared/types";
-import {useState} from "react";
+import {ChangeEvent, useState} from "react";
 import { MdAddCircle } from "react-icons/md";
 import { ImBin } from "react-icons/im";
 import { MdOutlineSaveAlt } from "react-icons/md";
 import { getGames } from './../../../shared/data.ts';
 import { getStorage } from 'firebase/storage';
+import { MdDriveFolderUpload } from "react-icons/md";
 
 type Props = {
     game?: GameType | null;
@@ -38,15 +39,24 @@ const GameForm = ({game=null}: Props) => {
         setSocialsObjects(newArray);
     };
 
-    const [file, setFile] = useState();
+    const [file, setFile] = useState<File| null>(null);
+    const [fileURL, setFileURL] = useState<string| null>(null);
+    const [isVideo, setIsVideo] = useState<boolean>(false);
 
-    const handleMediaChange = (e) => {
-        // setFile(URL.createObjectURL(e.target.files[0]));
+    const handleMediaChange = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files)
+        {
+            const newFile = e.target.files[0];
+            setFile(newFile);
+            setFileURL(URL.createObjectURL(newFile));
+            setIsVideo(newFile.type.startsWith('video/'));
+        }
     };
-    //
-    // const [mediaUploadProgress, setVideoUploadProgress] = useState(null);
-    // const [videoUploadError, setVideoUploadError] = useState(null);
-    //
+    console.log(file,fileURL,isVideo);
+
+    const [mediaUploadProgress, setMediaUploadProgress] = useState(null);
+    const [mediaUploadError, setMediaUploadError] = useState(null);
+
     const handleUpdloadMedia = async () => {
         try {
             if (!file) {
@@ -118,8 +128,24 @@ const GameForm = ({game=null}: Props) => {
                             </div>
                         )) }
                         <h1 className="text-3xl flex gap-4 items-center">Media</h1>
-                        <input type="file" accept="image/*,video/*" onChange={handleMediaChange}/>
-                        <button className="flex gap-4 bg-blue-100 justify-center items-center py-4 px-10 rounded-lg shadow mb-4"><MdOutlineSaveAlt /> Save</button>
+                        <div className="border-6 border-dashed py-10 border-blue-200">
+                            <div className="flex justify-evenly items-center py-5">
+                                <input type="file" accept="image/*,video/*" onChange={handleMediaChange}/>
+                                <button className="flex gap-4 bg-blue-100 justify-center items-center py-4 px-10 rounded-lg shadow"><MdDriveFolderUpload size={25}/> Upload Media</button>
+                            </div>
+
+                            {fileURL && !isVideo && (
+                                <div className="w-11/12 mx-auto flex justify-center">
+                                    <img src={fileURL}/>
+                                </div>)}
+
+                            {fileURL && isVideo && (
+                                <div className="w-11/12 mx-auto flex justify-center">
+                                    <video src={fileURL} autoPlay muted controls/>
+                                </div>)}
+                        </div>
+
+                        <button className="flex gap-4 bg-blue-100 justify-center items-center py-4 px-10 rounded-lg shadow mb-4"><MdOutlineSaveAlt size={25}/> Save</button>
                     </form>
                 </div>
             ) : (
