@@ -11,7 +11,7 @@ const Socials = ({setSelectedPage}: Props) => {
     return (
         <section id="contact">
             <motion.div
-                className=" bg-[url(assets/mainBg.png)] md:h-[25dvh]"
+                className=" bg-[url(assets/mainBg.png)] h-full"
                 onViewportEnter={() => setSelectedPage(SelectedPage.Contact)}
             >
                 <motion.div
@@ -25,11 +25,11 @@ const Socials = ({setSelectedPage}: Props) => {
                         visible: {opacity: 1, y: 0}
                     }}
                 >
-                    <div className="flex flex-col justify-center items-center w-full md:py-0 py-4">
-                        <img alt="Floralia Logo" src={logo} className="md:mt-[-10dvh]"/>
-                        <div className="flex justify-center items-center w-full gap-4 py-6">
+                    <div className="flex flex-col justify-center items-center w-full xl:py-0 py-4">
+                        <img alt="Floralia Logo" src={logo} className="xl:mt-[-2dvh]"/>
+                        <div className="flex justify-center items-center w-full gap-4 py-4 3xl:py-6">
                             {SocialList.map((item: SocialsType) => (
-                                <a href={item.url}><img alt={item.name} src={item.image} className="aspect-square md:h-[8dvh] h-[5dvh]"/></a>
+                                <a href={item.url}><img alt={item.name} src={item.image} className="aspect-square h-[5dvh] 3xl:h-[7vh]"/></a>
                             ))}
                         </div>
                         <p>© All Rights Reserved Floralia Games 2025</p>

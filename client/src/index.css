@@ -16,6 +16,10 @@ body,
   }
 }
 
+@theme {
+  --breakpoint-3xl: 120rem;
+}
+
 @layer utilities {
   .solway-light {
     font-family: "Solway", serif;

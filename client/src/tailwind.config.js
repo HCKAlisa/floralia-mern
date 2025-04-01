@@ -11,17 +11,12 @@ export default {
       },
       backgroundImage: (theme) => ({
         "gradient-sunset": "linear-gradient(90deg, #F2C035 0%, #EE9551 100%)",
-      })
+      }),
     },
     colors:{
       "primary-600": "#4C3F3F",
       "green-300": "#64A132",
     },
-    screens: {
-      xs: "480px",
-      sm: "768px",
-      md: "1060px"
-    }
   },
   plugins: [],
 }
