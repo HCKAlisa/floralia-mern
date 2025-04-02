@@ -19,7 +19,7 @@ const Faq = ({setSelectedPage}: Props) => {
     return (
         <section id="faq">
             <motion.div
-                className=" bg-[url(assets/mainBg.png)] md:h-[80dvh] h-full"
+                className=" bg-[url(assets/mainBg.png)] h-full"
                 onViewportEnter={() => setSelectedPage(SelectedPage.FAQ)}
             >
                 <motion.div
@@ -33,16 +33,16 @@ const Faq = ({setSelectedPage}: Props) => {
                         visible: {opacity: 1, y: 0}
                     }}
                 >
-                    <h1 className="py-6 text-4xl text-[#4C3F3F]">FAQ</h1>
-                    <div className="md:w-4/6 w-11/12 justify-center items-center grid md:grid-cols-2 gap-4">
+                    <h1 className="py-4 text-4xl text-[#4C3F3F]">FAQ</h1>
+                    <div className="xl:w-5/6 w-11/12 justify-center items-center grid xl:grid-cols-2 gap-4">
                         { FaqList.map((item: FaqType, index: number) => (
-                            <div className="z-10 md:py-2">
-                                <button id={`faq-q-${index}`} className="bg-white rounded-3xl w-full" onClick={()=> handleDropdownToggle(index)} >
-                                    <h6 className="py-8 px-2 text-xl">{item.question}</h6>
+                            <div className="z-10 xl:py-2 3xl:py-4">
+                                <button id={`faq-q-${index}`} className="bg-white rounded-2xl px-2 3xl:py-2 w-[85dvw] xl:w-full" onClick={()=> handleDropdownToggle(index)} >
+                                    <h6 className="py-6 px-2 text-lg 3xl:text-2xl">{item.question}</h6>
                                 </button>
                                 {dropdownToggledIndex===index && (
-                                    <div id={`faq-a-${index}`} className="bg-blue-200 rounded-3xl my-2 px-2">
-                                        <h6 className="py-8 text-xl">{item.answer}</h6>
+                                    <div id={`faq-a-${index}`} className="bg-blue-200 rounded-2xl my-2 px-2 3xl:py-2 w-[85dvw] xl:w-full">
+                                        <h6 className="py-6 px-2 text-lg 3xl:text-2xl">{item.answer}</h6>
                                     </div>
                                 )}
 

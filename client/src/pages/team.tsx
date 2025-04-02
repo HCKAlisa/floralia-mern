@@ -10,7 +10,7 @@ const Team = ({setSelectedPage}: Props) => {
     return (
         <section id="team">
             <motion.div
-                className=" bg-[url(assets/mainBg.png)] md:h-[80dvh]"
+                className=" bg-[url(assets/mainBg.png)] h-full overflow-y-visible"
                 onViewportEnter={() => setSelectedPage(SelectedPage.Team)}
             >
                 <motion.div
@@ -25,11 +25,11 @@ const Team = ({setSelectedPage}: Props) => {
                     }}
                 >
                     <h1 className="py-6 text-4xl text-[#4C3F3F]">Team</h1>
-                        <div className="md:w-3/5 w-11/12 flex md:flex-row justify-center items-center flex-wrap md:gap-16 gap-2">
+                        <div className="w-11/12 xl:w-4/5 3xl:w-3/5 flex xl:flex-row justify-center items-center flex-wrap gap-2 xl:gap-16 ">
                             { TeamList.map((item: TeamType, index: number) => (
-                                <div id={`team-${index}`} className="md:w-max w-2/5" >
-                                    <img alt={`${item.image}`} src={item.image}/>
-                                    <h6 className="pt-2 md:text-3xl">{item.name}</h6>
+                                <div id={`team-${index}`} className="xl:w-max w-2/5 flex flex-col items-center" >
+                                    <img alt={`${item.image}`} src={item.image} className="aspect-square w-3/5 3xl:w-11/12"/>
+                                    <h6 className="pt-2 xl:text-3xl">{item.name}</h6>
                                     <h6 className="pb-2">{item.title}</h6>
                                 </div>
 

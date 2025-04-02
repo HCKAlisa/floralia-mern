@@ -16,6 +16,10 @@ body,
   }
 }
 
+@theme {
+  --breakpoint-3xl: 120rem;
+}
+
 input[type="file"]::file-selector-button {
   border: 2px solid oklch(0.882 0.059 254.128);
   padding: 0.5em 1em;
