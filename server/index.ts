@@ -10,6 +10,7 @@ import type { Request, Response, NextFunction } from "express";
 
 import userRoutes from "./src/routes/user.routes.ts";
 import authRoutes from "./src/routes/auth.routes.ts";
+import gameRoutes from "./src/routes/game.routes.ts";
 
 dotenv.config();
 
@@ -47,6 +48,7 @@ const __parentDir = path.resolve(__dirname, '..');
 
 app.use("/api/user", (userRoutes));
 app.use("/api/auth", (authRoutes));
+app.use("/api/game", (gameRoutes));
 
 app.use(express.static(path.join(__parentDir, '/client/dist')));
 

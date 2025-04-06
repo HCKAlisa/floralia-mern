@@ -46,7 +46,7 @@ const GameList: GameType[] = [
             {
                 name: "instagram",
                 image: ins,
-                url: "cd client"
+                url: "https://www.instagram.com/floralia_games?igsh=OXlucWsxeGJkeDJ3"
             },
             {
                 name: "Discord",
@@ -55,6 +55,7 @@ const GameList: GameType[] = [
             }
         ],
         media: bloomtaleVideo,
+        isVideo: true,
         steam: "https://store.steampowered.com/app/3168520/BloomTale/",
         released: false,
     },
@@ -74,6 +75,7 @@ const GameList: GameType[] = [
             }
         ],
         media: bloomtaleVideo,
+        isVideo: true,
         steam: "https://store.steampowered.com/app/3168520/BloomTale/",
         released: false,
     },
@@ -93,6 +95,7 @@ const GameList: GameType[] = [
             }
         ],
         media: bloomtaleVideo,
+        isVideo: true,
         steam: "https://store.steampowered.com/app/3168520/BloomTale/",
         released: false,
     },
@@ -112,6 +115,7 @@ const GameList: GameType[] = [
             }
         ],
         media: bloomtaleVideo,
+        isVideo: true,
         steam: "https://store.steampowered.com/app/3168520/BloomTale/",
         released: false,
     }

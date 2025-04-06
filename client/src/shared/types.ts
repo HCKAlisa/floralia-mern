@@ -29,6 +29,7 @@ export interface GameType {
     id: string;
     name: string;
     media: string;
+    isVideo: boolean;
     socials: SocialsType[];
     steam: string;
     released: boolean;

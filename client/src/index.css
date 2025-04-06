@@ -1,24 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Solway:wght@300;400;500;700;800&display=swap');
 @import "tailwindcss";
 
+
+@layer base {
+  @theme {
+    --font-solway: "Solway", sans-serif;
+    --breakpoint-3xl: 120rem;
+  }
+}
+
 html,
 body,
 #root,
 .app {
   height: 100%;
-  font-family: 'solway', sans-serif;
+  font-family: "Solway", sans-serif;
   width: 100dvw;
 }
 
-@layer base {
-  @theme {
-    --font-solway: 'Solway', sans-serif;
-  }
-}
-
-@theme {
-  --breakpoint-3xl: 120rem;
-}
 
 input[type="file"]::file-selector-button {
   border: 2px solid oklch(0.882 0.059 254.128);
@@ -159,10 +158,10 @@ input[type="file"]::file-selector-button:hover {
   @apply h-1 w-px rounded-full bg-white transition-all duration-200 ease-in-out;
 }
 
-.indicator-line.active {
-  animation: indicator-line 0.5s ease infinite;
-  animation-delay: calc(var(--animation-order) * 0.1s);
-}
+/*.indicator-line.active {*/
+/*  animation: indicator-line 0.5s ease infinite;*/
+/*  animation-delay: calc(var(--animation-order) * 0.1s);*/
+/*}*/
 
 @keyframes indicator-line {
   0% {

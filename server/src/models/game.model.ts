@@ -4,17 +4,22 @@ const Schema = mongoose.Schema;
 // const ObjectId = Schema.Types.ObjectId;
 
 const GameSchema = new Schema({
+        id: {
+            type: String,
+            required: true,
+            unique: true
+        },
         name: {
             type: String,
             required: true,
+            unique: true
         },
         media: {
             type: String,
             required: true,
         },
         socials: {
-            type: Array,
-            required: true,
+            type: Array
         },
         steam: {
             type: String,
@@ -22,6 +27,14 @@ const GameSchema = new Schema({
         },
         released: {
             type: Boolean,
+        },
+        isVideo: {
+            type: Boolean,
+        },
+        slug: {
+            type: String,
+            required: true,
+            unique: true
         }},
     {timestamps: true}
 );

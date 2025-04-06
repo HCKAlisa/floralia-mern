@@ -21,8 +21,10 @@ const Admin = () => {
 
     return (
         <div className="w-full h-full flex flex-row">
-            <Sidebar/>
-            <div className="w-full">
+            <div className="fixed h-full">
+                <Sidebar/>
+            </div>
+            <div className="w-[80dvw] ml-[20dvw]">
                 { tab === 'Dashboard' && <Dashboard />}
                 { tab === 'Games' && <Game />}
                 { tab === 'GameForm' && <GameForm />}
