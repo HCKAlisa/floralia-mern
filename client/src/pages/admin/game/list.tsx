@@ -11,8 +11,27 @@ import { FaPlus } from "react-icons/fa";
 import {useSearchParams} from "react-router-dom";
 
 const GameList = () => {
-    const [games, setGames] = useState<GameType[]>(() => getGames());
+    //const [games, setGames] = useState<GameType[]>(() => getGames());
+    const [games, setGames] = useState<GameType[]>([]);
     const [_searchParams, setSearchParams] = useSearchParams();
+
+    useEffect(() => {
+        try {
+            const fetchGames = async () => {
+                const res = await fetch(`/api/game/getGames`);
+                const data = await res.json();
+                if (res.ok) {
+                    setGames(data);
+                } else {
+                    console.log(data.message)
+                }
+            };
+            fetchGames();
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    }, []);
+            console.log(games);
 
     const changeTab = (newSession: string) => {
         setSearchParams(params => {
@@ -79,7 +98,7 @@ const GameList = () => {
                 <button onClick={() =>changeTab('GameForm')} className="flex gap-4 bg-emerald-100 justify-center items-center py-4 px-10 rounded-lg shadow mb-4"><FaPlus /> Add</button>
             </div>
             <div className="flex flex-col items-center">
-                {games.map((game) => (
+                {games && games.map((game) => (
                     <Game key={game.id} Game={game}/>
                 ))}
             </div>

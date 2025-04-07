@@ -53,6 +53,7 @@ export function Game({ Game }: { Game: GameType }) {
             draggable({
                 element,
                 getInitialData() {
+                    //return games;
                     return getGameData(Game);
                 },
                 onGenerateDragPreview({ nativeSetDragImage }) {
@@ -85,6 +86,7 @@ export function Game({ Game }: { Game: GameType }) {
                     return isGameData(source.data);
                 },
                 getData({ input }) {
+                    //const data = games;
                     const data = getGameData(Game);
                     return attachClosestEdge(data, {
                         element,

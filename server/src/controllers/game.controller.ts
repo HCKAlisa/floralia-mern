@@ -1,6 +1,6 @@
 import type {NextFunction, Request, Response} from 'express';
 import {errorHandler} from "../utils/error.ts";
-import GameModel from "../models/game.model.ts";
+import Game from "../models/game.model.ts";
 
 
 export const create = async (req: Request, res: Response, next: NextFunction)=> {
@@ -10,7 +10,7 @@ export const create = async (req: Request, res: Response, next: NextFunction)=> 
     }
 
     const slug = req.body.name.split(' ').join('-').toLowerCase().replace(/[^a-zA-Z0-9-]/g, '-');
-    const newGame = new GameModel ({
+    const newGame = new Game ({
         ...req.body, slug
     });
 
@@ -21,6 +21,13 @@ export const create = async (req: Request, res: Response, next: NextFunction)=> 
         next(e);
     }
 
+};
 
-
-}
+export const getGames = async (_req: Request, res: Response, next: NextFunction)=> {
+    try {
+        const games = await Game.find();
+        res.status(200).json(games);
+    } catch (e) {
+        next(e);
+    }
+};

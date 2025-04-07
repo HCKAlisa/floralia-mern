@@ -35,6 +35,7 @@ const GameForm = ({game=null}: Props) => {
         let onChangeValue = [...socialsObjects];
         onChangeValue[index].name = selectedOption;
         setSocialsObjects(onChangeValue);
+        setFormData({...formData,socials: socialsObjects});
         console.log(socialsObjects);
     };
 
@@ -42,6 +43,7 @@ const GameForm = ({game=null}: Props) => {
         let onChangeValue = [...socialsObjects];
         onChangeValue[index].url = newUrl;
         setSocialsObjects(onChangeValue);
+        setFormData({...formData,socials: socialsObjects});
         console.log(socialsObjects);
     };
 
@@ -111,7 +113,7 @@ const GameForm = ({game=null}: Props) => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        setFormData({...formData,socials: socialsObjects})
+        setFormData({...formData,socials: socialsObjects});
         console.log(formData);
         try {
             const res = await fetch('api/game/create', {
