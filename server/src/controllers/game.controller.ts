@@ -5,7 +5,7 @@ import Game from "../models/game.model.ts";
 
 export const create = async (req: Request, res: Response, next: NextFunction)=> {
 
-    if (!req.body.name || !req.body.steam || !req.body.socials || !req.body.media){
+    if (!req.body.name || !req.body.steam || !req.body.socials){
         return next(errorHandler("400", 'Please provide all required fields'));
     }
 
@@ -29,5 +29,14 @@ export const getGames = async (_req: Request, res: Response, next: NextFunction)
         res.status(200).json(games);
     } catch (e) {
         next(e);
+    }
+};
+
+export const deleteGame = async (req: Request, res: Response, next:NextFunction) => {
+    try {
+        await Game.findOneAndDelete({id: req.params.gameId}, {});
+        res.status(200).json(req.params.gameId + 'game has been deleted');
+    } catch (error) {
+        next(error);
     }
 };

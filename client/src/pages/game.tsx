@@ -69,7 +69,7 @@ const Game = ({setSelectedPage}: Props) => {
                         <div className="relative aspect-video xl:h-[60dvh] xl:rounded-4xl rounded-2xl overflow-hidden">
                             <div id={`game-${index}`} className={overlayStyles}>
                                 <h3 className="text-4xl">{item.name}</h3>
-                                <div className="flex gap-4 xl:py-6">
+                                <div className="flex gap-4 xl:py-2">
                                     {item.socials.map((social:SocialsType) => (
                                         <a title={social.name} href={social.url}>
                                             {social.name==="discord" && (<FaDiscord size={25}/>)}

@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import { GameType } from "./../../../shared/types.ts";
-import { getGames, isGameData } from "./../../../shared/data.ts";
+import { isGameData } from "./../../../shared/data.ts";
 import { monitorForElements } from '@atlaskit/pragmatic-drag-and-drop/element/adapter';
 import { extractClosestEdge } from '@atlaskit/pragmatic-drag-and-drop-hitbox/closest-edge';
 import { reorderWithEdge } from '@atlaskit/pragmatic-drag-and-drop-hitbox/util/reorder-with-edge';

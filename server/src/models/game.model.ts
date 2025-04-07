@@ -16,7 +16,7 @@ const GameSchema = new Schema({
         },
         media: {
             type: String,
-            required: true,
+            default: 'https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg',
         },
         socials: {
             type: Array
@@ -30,6 +30,7 @@ const GameSchema = new Schema({
         },
         isVideo: {
             type: Boolean,
+            default: false
         },
         slug: {
             type: String,

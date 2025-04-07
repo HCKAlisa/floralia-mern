@@ -42,9 +42,27 @@ const stateStyles: { [Key in GameState['type']]?: HTMLAttributes<HTMLDivElement>
 
 const idle: GameState = { type: 'idle' };
 
+import Modal from 'react-modal';
+
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+    },
+};
+
+// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
+Modal.setAppElement('#root');
+
 export function Game({ Game }: { Game: GameType }) {
     const ref = useRef<HTMLDivElement | null>(null);
     const [state, setState] = useState<GameState>(idle);
+    const [gameIdToDelete, setGameIdToDelete] = useState('');
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const element = ref.current;
@@ -53,7 +71,6 @@ export function Game({ Game }: { Game: GameType }) {
             draggable({
                 element,
                 getInitialData() {
-                    //return games;
                     return getGameData(Game);
                 },
                 onGenerateDragPreview({ nativeSetDragImage }) {
@@ -123,6 +140,22 @@ export function Game({ Game }: { Game: GameType }) {
         );
     }, [Game]);
 
+    const handleDeleteGame = async () => {
+        try {
+            const res = await fetch(`/api/game/delete/${gameIdToDelete}`, {
+                method: 'DELETE',
+            });
+            const data = await res.json();
+            if (res.ok) {
+                setShowModal(false);
+            } else {
+                console.log(data.message);
+            }
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    };
+
     return (
         <>
             <div className="relative">
@@ -137,11 +170,33 @@ export function Game({ Game }: { Game: GameType }) {
                     </div>
                     <span className="truncate flex-grow flex-shrink text-xl">{Game.name}</span>
                     <a><FaPen /></a>
-                    <a><ImBin /></a>
+                    <button onClick={()=> {
+                        setShowModal(true);
+                        setGameIdToDelete(Game.id);
+                        console.log(gameIdToDelete);
+                    }}><ImBin /></button>
                 </div>
                 {state.type === 'is-dragging-over' && state.closestEdge ? (
                     <DropIndicator edge={state.closestEdge} gap={'8px'} />
                 ) : null}
+                <Modal
+                    isOpen={showModal}
+                    onRequestClose={() => setShowModal(false)}
+                    style={customStyles}
+                    contentLabel="confiirmation Modal"
+                >
+                    <h3 className='mb-5 text-lg text-gray-500 dark:text-gray-400'>
+                        Are you sure you want to delete {Game.name}?
+                    </h3>
+                    <div className='flex justify-center gap-4'>
+                        <button color='failure' onClick={handleDeleteGame}>
+                            Yes, I'm sure
+                        </button>
+                        <button color='gray' onClick={() => setShowModal(false)}>
+                            No, cancel
+                        </button>
+                    </div>
+                </Modal>
             </div>
             {state.type === 'preview' ? createPortal(<DragPreview Game={Game} />, state.container) : null}
         </>

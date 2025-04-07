@@ -32,6 +32,11 @@ input[type="file"]::file-selector-button:hover {
   border: 3px solid oklch(0.882 0.059 254.128);
 }
 
+input[type="file"][disabled]::file-selector-button {
+  border: 1px solid darkgray;
+  background-color: darkgray;
+}
+
 @layer utilities {
   .solway-light {
     font-family: "Solway", serif;
