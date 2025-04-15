@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/create', verifyToken, create);
 router.get('/getGames', getGames);
+router.put('/updateGame/:gameId', getGames);
 router.delete('/delete/:gameId', verifyToken, deleteGame);
 
 export default router;

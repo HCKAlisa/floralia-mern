@@ -7,6 +7,7 @@ import GameForm from "./game/form.tsx"
 import Team from "./team/list.tsx"
 import Faq from "./faq/list.tsx"
 import Contact from "./contact/list.tsx"
+import UpdateGameForm from "./game/update.tsx"
 
 const Admin = () => {
     const location = useLocation();
@@ -28,6 +29,7 @@ const Admin = () => {
                 { tab === 'Dashboard' && <Dashboard />}
                 { tab === 'Games' && <Game />}
                 { tab === 'GameForm' && <GameForm />}
+                { tab === 'UpdateGame' && <UpdateGameForm />}
                 { tab === 'Team' && <Team />}
                 { tab === 'FAQ' && <Faq />}
                 { tab === 'Contact' && <Contact />}

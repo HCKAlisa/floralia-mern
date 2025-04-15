@@ -19,6 +19,8 @@ import { getGameData, isGameData } from './../../../shared/data.ts';
 import {GameType} from "./../../../shared/types";
 import { ImBin } from "react-icons/im";
 import { FaPen } from "react-icons/fa";
+import Modal from 'react-modal';
+import {useSearchParams} from "react-router-dom";
 
 type GameState =
     | {
@@ -42,7 +44,7 @@ const stateStyles: { [Key in GameState['type']]?: HTMLAttributes<HTMLDivElement>
 
 const idle: GameState = { type: 'idle' };
 
-import Modal from 'react-modal';
+
 
 const customStyles = {
     content: {
@@ -63,6 +65,7 @@ export function Game({ Game }: { Game: GameType }) {
     const [state, setState] = useState<GameState>(idle);
     const [gameIdToDelete, setGameIdToDelete] = useState('');
     const [showModal, setShowModal] = useState(false);
+    const [_searchParams, setSearchParams] = useSearchParams({ tab: 'UpdateGame', gameId: '' });
 
     useEffect(() => {
         const element = ref.current;
@@ -140,6 +143,10 @@ export function Game({ Game }: { Game: GameType }) {
         );
     }, [Game]);
 
+    const changeTab = (newSession: string) => {
+        setSearchParams({ tab: 'UpdateGame', gameId: newSession });
+    };
+
     const handleDeleteGame = async () => {
         try {
             const res = await fetch(`/api/game/delete/${gameIdToDelete}`, {
@@ -169,7 +176,7 @@ export function Game({ Game }: { Game: GameType }) {
                         <FaGripLines size={15} />
                     </div>
                     <span className="truncate flex-grow flex-shrink text-xl">{Game.name}</span>
-                    <a><FaPen /></a>
+                    <button onClick={()=> changeTab(Game.id)}><FaPen /></button>
                     <button onClick={()=> {
                         setShowModal(true);
                         setGameIdToDelete(Game.id);

@@ -1,5 +1,5 @@
 import {GameType} from "./../../../shared/types";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, useEffect, useState} from "react";
 import { MdAddCircle } from "react-icons/md";
 import { ImBin } from "react-icons/im";
 import { MdOutlineSaveAlt } from "react-icons/md";
@@ -9,15 +9,41 @@ import { MdDriveFolderUpload } from "react-icons/md";
 import {app} from "../../../firebase.ts";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import {useNavigate} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const GameForm = (() => {
+const UpdateGameForm = ( () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState<GameType>({id: "", name: "", socials: [], steam: "", released: false, media: "", isVideo: false});
     const [socialsObjects, setSocialsObjects] = useState([{ name: "discord", url: "" }]);
     const [mediaUploadProgress, setMediaUploadProgress] = useState<string | null>(null);
     const [mediaUploadError, setMediaUploadError] = useState<string | null>(null);
     const [mediaUploadSuccess, setMediaUploadSuccess] = useState<boolean>(false);
+    const [_publishError, setPublishError] = useState(null);
+    const { gameId } = useParams();
+
+    useEffect(() => {
+        try {
+            const fetchGame = async () => {
+                const res = await fetch(`/api/post/getGame?gameId=${gameId}`);
+                const data = await res.json();
+                if (!res.ok) {
+                    console.log(data.message);
+                    setPublishError(data.message);
+                    return;
+                }
+                if (res.ok) {
+                    setPublishError(null);
+                    setFormData(data[0]);
+                    setFileURL(data[0].media);
+                    setIsVideo(data[0].isVideo);
+                }
+            };
+
+            fetchGame();
+        } catch (error: any) {
+            console.log(error.message);
+        }
+    }, [gameId]);
 
     function addSocials(){
         setSocialsObjects([...socialsObjects,{ name: "discord", url: "" }]);
@@ -136,7 +162,7 @@ const GameForm = (() => {
             <h1 className="text-4xl p-6"> New Game </h1>
             <form className="w-3/4 mx-auto flex flex-col gap-6" onSubmit={handleSubmit}>
                 <div className="flex gap-4">
-                    <input onChange={handleTitleChange} type="text" name="Title" id="title" className="block p-4 w-4/5 text-2xl rounded-sm bg-blue-100 placeholder:text-gray-400 focus:outline-2 focus:outline-blue-400" placeholder="Title" />
+                    <input onChange={handleTitleChange} type="text" name="Title" id="title" className="block p-4 w-4/5 text-2xl rounded-sm bg-blue-100 placeholder:text-gray-400 focus:outline-2 focus:outline-blue-400" placeholder="Title" value={formData.name} />
                     <span className="flex items-center gap-4">
                         <input type="checkbox" id="checkbox" />
                         <label htmlFor="checkbox"className="text-2xl">Released</label>
@@ -148,12 +174,12 @@ const GameForm = (() => {
                     <div className="flex gap-4 items-center justify-between">
                         <select name="socials-select" id="socials-select" className="block p-4 w-1/5 text-2xl rounded-sm  bg-blue-100 placeholder:text-gray-400 focus:outline-2 focus:outline-blue-400" defaultValue="discord" value={item.name}
                                 onChange={e => {handleSelectChange(e.target.value, index);
-                        }}>
+                                }}>
                             <option value="discord">Discord</option>
                             <option value="instagram">Instagram</option>
                             <option value="x">X (former Twitter)</option>
                         </select>
-                        <input onChange={e => {handleUrlChange(e.target.value, index)}} type="text" name="url" id="url" className="block p-4 w-4/5  text-2xl rounded-sm placeholder:text-gray-400 bg-blue-100 focus:outline-2 focus:outline-blue-400" placeholder="URL" />
+                        <input onChange={e => {handleUrlChange(e.target.value, index)}} type="text" name="url" id="url" className="block p-4 w-4/5  text-2xl rounded-sm placeholder:text-gray-400 bg-blue-100 focus:outline-2 focus:outline-blue-400" placeholder="URL" value={item.url} />
                         <div ><ImBin size={25} onClick={() => handleDeleteSocials(index)}/></div>
                     </div>
                 )) }
@@ -162,16 +188,16 @@ const GameForm = (() => {
                     <div className="flex justify-evenly items-center py-5">
                         <input type="file" accept="image/*,video/*" onChange={handleMediaChange} disabled={mediaUploadProgress!==null} className="disabled:text-gray-300"/>
                         {mediaUploadProgress ? (
-                                <div className="w-1/8">
-                                    <CircularProgressbar value={Number(mediaUploadProgress)} text={`${mediaUploadProgress}%`} />
-                                </div>
-                            ) : (
-                                <div className="flex flex-col items-center justify-center">
-                                    <button className="flex gap-4 bg-blue-100 justify-center items-center py-4 px-10 rounded-lg shadow disabled:shadow-none disabled:bg-gray-500 disabled:text-gray-300" disabled={mediaUploadSuccess} onClick={handleUpdloadMedia}><MdDriveFolderUpload size={25}/> Upload Media</button>
-                                    {mediaUploadError && (
-                                        <p className="py-2 text-red-500">{mediaUploadError}</p>
-                                    )}
-                                </div>
+                            <div className="w-1/8">
+                                <CircularProgressbar value={Number(mediaUploadProgress)} text={`${mediaUploadProgress}%`} />
+                            </div>
+                        ) : (
+                            <div className="flex flex-col items-center justify-center">
+                                <button className="flex gap-4 bg-blue-100 justify-center items-center py-4 px-10 rounded-lg shadow disabled:shadow-none disabled:bg-gray-500 disabled:text-gray-300" disabled={mediaUploadSuccess} onClick={handleUpdloadMedia}><MdDriveFolderUpload size={25}/> Upload Media</button>
+                                {mediaUploadError && (
+                                    <p className="py-2 text-red-500">{mediaUploadError}</p>
+                                )}
+                            </div>
                         )}
 
                     </div>
@@ -192,4 +218,4 @@ const GameForm = (() => {
         </div>
     )
 })
-export default GameForm
+export default UpdateGameForm

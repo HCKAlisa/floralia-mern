@@ -34,8 +34,6 @@ const Game = ({setSelectedPage}: Props) => {
         }
     }, []);
 
-    console.log(gameList);
-
     const handleNextOrPrevious = (next: boolean) => {
         setCurrentGame((prevIndex) => {
             const itemCount = gameList.length;
@@ -66,12 +64,12 @@ const Game = ({setSelectedPage}: Props) => {
                 >
                     <h1 className="py-6 text-4xl text-[#4C3F3F]">Game</h1>
                     { gameList.filter((_item:GameType ,index: number) => index === currentGame).map((item: GameType, index: number) => (
-                        <div className="relative aspect-video xl:h-[60dvh] xl:rounded-4xl rounded-2xl overflow-hidden">
+                        <div key={`game-${index}`} className="relative aspect-video xl:h-[60dvh] xl:rounded-4xl rounded-2xl overflow-hidden">
                             <div id={`game-${index}`} className={overlayStyles}>
                                 <h3 className="text-4xl">{item.name}</h3>
                                 <div className="flex gap-4 xl:py-2">
                                     {item.socials.map((social:SocialsType) => (
-                                        <a title={social.name} href={social.url}>
+                                        <a key={`game-social-${social.name}`} title={social.name} href={social.url}>
                                             {social.name==="discord" && (<FaDiscord size={25}/>)}
                                             {social.name==="instagram" && (<FaInstagram size={25}/>)}
                                             {social.name==="x" && (<FaXTwitter size={25}/>)}

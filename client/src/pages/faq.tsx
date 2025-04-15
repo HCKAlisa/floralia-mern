@@ -36,7 +36,7 @@ const Faq = ({setSelectedPage}: Props) => {
                     <h1 className="py-4 text-4xl text-[#4C3F3F]">FAQ</h1>
                     <div className="xl:w-5/6 w-11/12 justify-center items-center grid xl:grid-cols-2 gap-4">
                         { FaqList.map((item: FaqType, index: number) => (
-                            <div className="z-10 xl:py-2 3xl:py-4">
+                            <div key={`faq-${index}`} className="z-10 xl:py-2 3xl:py-4">
                                 <button id={`faq-q-${index}`} className="bg-white rounded-2xl px-2 3xl:py-2 w-[85dvw] xl:w-full" onClick={()=> handleDropdownToggle(index)} >
                                     <h6 className="py-6 px-2 text-lg 3xl:text-2xl">{item.question}</h6>
                                 </button>

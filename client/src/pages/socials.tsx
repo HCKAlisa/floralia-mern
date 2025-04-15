@@ -29,7 +29,7 @@ const Socials = ({setSelectedPage}: Props) => {
                         <img alt="Floralia Logo" src={logo} className="xl:mt-[-2dvh]"/>
                         <div className="flex justify-center items-center w-full gap-4 py-4 3xl:py-6">
                             {SocialList.map((item: SocialsType) => (
-                                <a href={item.url}><img alt={item.name} src={item.image} className="aspect-square h-[5dvh] 3xl:h-[7vh]"/></a>
+                                <a key={`social-${item.name}`} href={item.url}><img alt={item.name} src={item.image} className="aspect-square h-[5dvh] 3xl:h-[7vh]"/></a>
                             ))}
                         </div>
                         <p>© All Rights Reserved Floralia Games 2025</p>

@@ -16,32 +16,36 @@ const Navbar = ({selectedPage, setSelectedPage}: Props) => {
     const isAboveMediumScreens: boolean = useMediaQuery("(min-width:1060px)");
     return (
         <nav>
-            <div className={`${flexEnd} bg-blue-100 drop-shadow px-10 fixed top-0 z-50 w-[100dvw] md:w-full md:h-[20dvh] h-[10dvh]`}>
-                <div className={`${flexEnd} w-full gap-16`}>
-                    { isAboveMediumScreens ? (
-                        <div className={`${flexEnd} gap-8 text-sm`}>
-                            <Link
-                                page="Home"
-                                selectedPage={selectedPage}
-                                setSelectedPage={setSelectedPage}
-                            />
-                            <Link page="Team"
-                                  selectedPage={selectedPage}
-                                  setSelectedPage={setSelectedPage}
-                            />
-                            <Link page="FAQ"
-                                  selectedPage={selectedPage}
-                                  setSelectedPage={setSelectedPage}
-                            />
-                            <Link page="Contact"
-                                  selectedPage={selectedPage}
-                                  setSelectedPage={setSelectedPage}
-                            />
-                        </div>
-                    ) : (
-                        <button title="Open Menu" className="rounded-full bg-orange-100 p-2" onClick={()=> setMenuToggled(!isMenuToggled)}><Bars3Icon className="h-6 w-6 text-white"/></button>
-                    )}
+            <div className={`${flexEnd} bg-[url(assets/navbarBG.png)] bg-white bg-center drop-shadow px-10 fixed top-0 z-50 w-[100dvw] md:w-full md:h-[20dvh] h-[10dvh]`}>
+                {/*<div className="fixed left-2/5"><img src={logo} className="h-[18dvh]"/></div>*/}
+                <div className="flex items-end w-full h-full bg-[url(assets/logo.png)] bg-center bg-contain bg-no-repeat">
+                    <div className={`${flexEnd} w-full gap-16`}>
+                        { isAboveMediumScreens ? (
+                            <div className={`${flexEnd} gap-8 text-sm`}>
+                                <Link
+                                    page="Home"
+                                    selectedPage={selectedPage}
+                                    setSelectedPage={setSelectedPage}
+                                />
+                                <Link page="Team"
+                                      selectedPage={selectedPage}
+                                      setSelectedPage={setSelectedPage}
+                                />
+                                <Link page="FAQ"
+                                      selectedPage={selectedPage}
+                                      setSelectedPage={setSelectedPage}
+                                />
+                                <Link page="Contact"
+                                      selectedPage={selectedPage}
+                                      setSelectedPage={setSelectedPage}
+                                />
+                            </div>
+                        ) : (
+                            <button title="Open Menu" className="rounded-full bg-orange-100 p-2" onClick={()=> setMenuToggled(!isMenuToggled)}><Bars3Icon className="h-6 w-6 text-white"/></button>
+                        )}
+                    </div>
                 </div>
+
             </div>
 
             {/* MOBILE MENU MODAL*/}
