@@ -46,7 +46,7 @@ const Game = ({setSelectedPage}: Props) => {
     };
 
     return (
-        <section id="home">
+        <section id="games">
             <motion.div
                 className=" bg-[url(assets/mainBg.png)] xl:h-[80dvh] h-full"
                 onViewportEnter={() => setSelectedPage(SelectedPage.Home)}

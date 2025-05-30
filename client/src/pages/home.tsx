@@ -5,6 +5,7 @@ import Footer from "./socials.tsx";
 import Faq from "./faq.tsx";
 import Game from "./game.tsx";
 import { SelectedPage } from "../shared/types";
+import About from "./about.tsx";
 const Home = () => {
     const [selectedPage, setSelectedPage] = useState<SelectedPage>(SelectedPage.Home);
     const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
@@ -22,13 +23,15 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="app bg-primary-800">
+        <div className="app">
             <Navbar
                 isTopOfPage={isTopOfPage}
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
             />
-            <div className="md:pt-[20dvh] pt-[10dvh]">
+            <div>
+            {/*<div className="md:pt-[20dvh] pt-[10dvh]">*/}
+                <About setSelectedPage={setSelectedPage} />
                 <Game setSelectedPage={setSelectedPage}/>
                 <Team setSelectedPage={setSelectedPage} />
                 <Faq setSelectedPage={setSelectedPage} />

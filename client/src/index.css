@@ -1,10 +1,16 @@
 @import "tailwindcss";
+@config "./../tailwind.config.js";
 
 @layer theme, base, components, utilities;
 
 @layer base {
   @theme {
     --breakpoint-3xl: 120rem;
+    --color-light-primary: #884239;
+    --color-light-secondary: #D1D161;
+    --color-light-tertiary: #FC8F92;
+    --color-light-primary-bg: #FFFCED;
+    --color-light-secondary-bg: #FFDD93;
   }
 }
 
