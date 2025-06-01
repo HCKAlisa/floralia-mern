@@ -1,6 +1,6 @@
 import {TeamType, GameType, FaqType, SocialsType} from "./types.ts";
-//import bloomtale from "../assets/videoPlaceholder.png"
-import bloomtaleVideo from "../assets/Videos/gameplayTralier.mp4"
+import bloomtale from "../assets/images/bloomTale.png"
+//import bloomtaleVideo from "../assets/videos/gameplayTralier.mp4"
 import ins from "../assets/Icons/instagram.png"
 import steam from "../assets/Icons/steam.png"
 import discord from "../assets/Icons/discord.png"
@@ -9,6 +9,7 @@ import hanna from "../assets/Icons/hanna.png"
 import sion from "../assets/Icons/sion.png"
 import yuki from "../assets/Icons/yuki.png"
 import joshua from "../assets/Icons/joshua.png"
+import game2 from "../assets/images/game2.png"
 
 const gameDataKey = Symbol('game');
 export type TGameData = { [gameDataKey]: true; gameId: GameType['id'] };
@@ -42,83 +43,31 @@ const GameList: GameType[] = [
     {
         id: "1",
         name: "BloomTale",
-        socials: [
-            {
-                name: "instagram",
-                image: ins,
-                url: "https://www.instagram.com/floralia_games?igsh=OXlucWsxeGJkeDJ3"
-            },
-            {
-                name: "Discord",
-                image: discord,
-                url: "https://discord.com/invite/xHBexRWwdv?fbclid=PAZXh0bgNhZW0CMTEAAaYXRe6giX0f7_ed1atA1TvuQsrZd_pDz9qPSuCBYdp1ol0qW9vVQr4lb6w_aem_IzOfHwS2rwsdJ5GavB9mpQ"
-            }
-        ],
-        media: bloomtaleVideo,
-        isVideo: true,
+        description: "BloomTale is a cozy flower shop game where you can grow, harvest, and sell flowers. Customize your shop, decorate your garden, and interact with charming characters in a vibrant world.",
+        media: bloomtale,
+        isVideo: false,
         steam: "https://store.steampowered.com/app/3168520/BloomTale/",
         released: false,
+        points: [
+            "COZY",
+            "CREATIVE",
+            "RELAXING",
+        ]
     },
     {
         id: "2",
         name: "Test 2",
-        socials: [
-            {
-                name: "instagram",
-                image: ins,
-                url: "https://www.instagram.com/floralia_games?igsh=OXlucWsxeGJkeDJ3"
-            },
-            {
-                name: "Discord",
-                image: discord,
-                url: "https://discord.com/invite/xHBexRWwdv?fbclid=PAZXh0bgNhZW0CMTEAAaYXRe6giX0f7_ed1atA1TvuQsrZd_pDz9qPSuCBYdp1ol0qW9vVQr4lb6w_aem_IzOfHwS2rwsdJ5GavB9mpQ"
-            }
-        ],
-        media: bloomtaleVideo,
-        isVideo: true,
+        description: "This is a test game for demonstration purposes.",
+        media: game2,
+        isVideo: false,
         steam: "https://store.steampowered.com/app/3168520/BloomTale/",
         released: false,
+        points: [
+            "COZY",
+            "CREATIVE",
+            "RELAXING",
+        ]
     },
-    {
-        id: "3",
-        name: "Test 3",
-        socials: [
-            {
-                name: "instagram",
-                image: ins,
-                url: "https://www.instagram.com/floralia_games?igsh=OXlucWsxeGJkeDJ3"
-            },
-            {
-                name: "Discord",
-                image: discord,
-                url: "https://discord.com/invite/xHBexRWwdv?fbclid=PAZXh0bgNhZW0CMTEAAaYXRe6giX0f7_ed1atA1TvuQsrZd_pDz9qPSuCBYdp1ol0qW9vVQr4lb6w_aem_IzOfHwS2rwsdJ5GavB9mpQ"
-            }
-        ],
-        media: bloomtaleVideo,
-        isVideo: true,
-        steam: "https://store.steampowered.com/app/3168520/BloomTale/",
-        released: false,
-    },
-    {
-        id: "4",
-        name: "Test 4",
-        socials: [
-            {
-                name: "instagram",
-                image: ins,
-                url: "https://www.instagram.com/floralia_games?igsh=OXlucWsxeGJkeDJ3"
-            },
-            {
-                name: "Discord",
-                image: discord,
-                url: "https://discord.com/invite/xHBexRWwdv?fbclid=PAZXh0bgNhZW0CMTEAAaYXRe6giX0f7_ed1atA1TvuQsrZd_pDz9qPSuCBYdp1ol0qW9vVQr4lb6w_aem_IzOfHwS2rwsdJ5GavB9mpQ"
-            }
-        ],
-        media: bloomtaleVideo,
-        isVideo: true,
-        steam: "https://store.steampowered.com/app/3168520/BloomTale/",
-        released: false,
-    }
 ]
 
 const TeamList: TeamType[] = [
@@ -208,6 +157,11 @@ const SocialList: SocialsType[] = [
         image: steam,
         url: "https://store.steampowered.com/app/3168520/BloomTale/",
     },
+    {
+        name: "Discord",
+        image: discord,
+        url: "https://discord.com/invite/xHBexRWwdv?fbclid=PAZXh0bgNhZW0CMTEAAaYXRe6giX0f7_ed1atA1TvuQsrZd_pDz9qPSuCBYdp1ol0qW9vVQr4lb6w_aem_IzOfHwS2rwsdJ5GavB9mpQ"
+    }
 ]
 
 export {GameList, TeamList, FaqList, SocialList};

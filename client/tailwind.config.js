@@ -10,6 +10,7 @@ export default {
     extend: {
       fontFamily: {
         solway: ["solway", "sans-serif"],
+        kavoon: ["kavoon", "sans-serif"],
       },
       backgroundImage: (theme) => ({
         "gradient-sunset": "linear-gradient(90deg, #F2C035 0%, #EE9551 100%)",
@@ -33,7 +34,7 @@ export default {
           background: "#FFFCED", // or DEFAULT
           foreground: "#884239", // or 50 to 900 DEFAULT
           primary: {
-            foreground: "#884239",
+            foreground: "#FFFCED",
             background: "#FFFCED",
             DEFAULT: "#884239",
           },

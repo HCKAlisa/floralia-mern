@@ -1,20 +1,30 @@
 import { motion } from "framer-motion";
 import {SelectedPage} from "../shared/types.ts";
+import {Image, Button, Link} from "@heroui/react";
+import background from "../assets/background/about-bg.png";
+import { SocialList } from "../shared/data.ts"; // Assuming you have a data file for socials
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void;
 }
 
 const About = ({setSelectedPage}: Props) => {
+    const discordLink = SocialList.find(social => social.name === "Discord")?.url || "#";
+
     return (
         <section id="about">
             <motion.div
-                className=" bg-[url(assets/mainBg.png)] h-full"
+                className="h-full"
                 onViewportEnter={() => setSelectedPage(SelectedPage.About)}
             >
                 <div>
+                    <Image
+                        alt="hero background"
+                        src={background}
+                        width="100%"
+                    />
                     <motion.div
-                        className="mx-auto flex items-center justify-end w-2/3"
+                        className="absolute top-0 left-0 mx-auto flex items-center justify-end w-full h-full z-10"
                         initial="hidden"
                         whileInView="visible"
                         viewport={{once:true, amount: 0.5}}
@@ -24,12 +34,13 @@ const About = ({setSelectedPage}: Props) => {
                             visible: { opacity: 1, y: 0 }
                         }}
                     >
-                        <div className="justify-end items-center xl:w-1/2 w-full py-18 px-6">
-                            <h1 className="text-6xl font-bold text-white mr-[8dvw]">Floralia</h1>
-                            <h1 className="text-6xl font-bold text-white mr-[-8dvw]">Games</h1>
-                            <p className="text-lg text-white mt-4 text-justify">
+                        <div className="text-primary-background xl:w-1/2 w-full  mx-20">
+                            <h1 className="text-9xl font-kavoon text-end">Floralia</h1>
+                            <h1 className="text-9xl font-kavoon ">Games</h1>
+                            <p className="text-4xl mt-4 text-justify">
                                 Lorem ipsum dolor sit amet consectetur. Laoreet sed tempus et semper luctus lorem. Tellus dapibus ullamcorper urna porta semper id orci ipsum massa. Consequat risus
                             </p>
+                            <Button as={Link} href={discordLink} radius="full" variant="shadow" color="secondary" className="text-primary-background mt-4">Join us on Discord</Button>
                         </div>
 
                     </motion.div>

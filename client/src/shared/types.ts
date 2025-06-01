@@ -1,5 +1,6 @@
 export enum SelectedPage {
     Home = "home",
+    Games = "games",
     Team = "team",
     FAQ = "faq",
     Contact = "contact",
@@ -31,9 +32,11 @@ export interface GameType {
     name: string;
     media: string;
     isVideo: boolean;
-    socials: SocialsType[];
+    socials?: SocialsType[];
     steam: string;
     released: boolean;
+    description: string;
+    points?: string[];
 }
 
 export interface UserType {

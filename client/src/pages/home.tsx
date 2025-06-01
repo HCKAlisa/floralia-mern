@@ -23,7 +23,7 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="app">
+        <div className="app bg-primary-background">
             <Navbar
                 isTopOfPage={isTopOfPage}
                 selectedPage={selectedPage}
