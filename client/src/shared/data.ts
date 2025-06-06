@@ -9,7 +9,8 @@ import hanna from "../assets/Icons/hanna.png"
 import sion from "../assets/Icons/sion.png"
 import yuki from "../assets/Icons/yuki.png"
 import joshua from "../assets/Icons/joshua.png"
-import game2 from "../assets/images/game2.png"
+import mia from "../assets/Icons/mia.png"
+// import game2 from "../assets/images/game2.png"
 
 const gameDataKey = Symbol('game');
 export type TGameData = { [gameDataKey]: true; gameId: GameType['id'] };
@@ -43,7 +44,7 @@ const GameList: GameType[] = [
     {
         id: "1",
         name: "BloomTale",
-        description: "BloomTale is a cozy flower shop game where you can grow, harvest, and sell flowers. Customize your shop, decorate your garden, and interact with charming characters in a vibrant world.",
+        description: "BloomTale is a cozy flower shop simulation game where creativity meets management. Arrange beautiful flower compositions that speak the language of flowers, manage your shop, and satisfy your customers in a world of blooming possibilities.",
         media: bloomtale,
         isVideo: false,
         steam: "https://store.steampowered.com/app/3168520/BloomTale/",
@@ -54,20 +55,20 @@ const GameList: GameType[] = [
             "RELAXING",
         ]
     },
-    {
-        id: "2",
-        name: "Test 2",
-        description: "This is a test game for demonstration purposes.",
-        media: game2,
-        isVideo: false,
-        steam: "https://store.steampowered.com/app/3168520/BloomTale/",
-        released: false,
-        points: [
-            "COZY",
-            "CREATIVE",
-            "RELAXING",
-        ]
-    },
+    // {
+    //     id: "2",
+    //     name: "Test 2",
+    //     description: "This is a test game for demonstration purposes.",
+    //     media: game2,
+    //     isVideo: false,
+    //     steam: "https://store.steampowered.com/app/3168520/BloomTale/",
+    //     released: false,
+    //     points: [
+    //         "COZY",
+    //         "CREATIVE",
+    //         "RELAXING",
+    //     ]
+    // },
 ]
 
 const TeamList: TeamType[] = [
@@ -86,7 +87,7 @@ const TeamList: TeamType[] = [
     {
         id: "3",
         name:"Sion Kim",
-        title: "Game Designer",
+        title: "Community Manager",
         image: sion,
     },
     {
@@ -100,6 +101,12 @@ const TeamList: TeamType[] = [
         name:"Joshua Ingeneri",
         title: "Audio Designer",
         image: joshua,
+    },
+    {
+        id: "6",
+        name:"Mia Delino",
+        title: "Game Designer",
+        image: mia,
     },
 ]
 

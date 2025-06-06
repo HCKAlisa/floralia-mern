@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon } from "@heroicons/react/24/solid";
 import Link from "./link";
 import { SelectedPage } from "../shared/types";
 import {

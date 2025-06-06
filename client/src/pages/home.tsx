@@ -6,6 +6,9 @@ import Faq from "./faq.tsx";
 import Game from "./game.tsx";
 import { SelectedPage } from "../shared/types";
 import About from "./about.tsx";
+import Devlog from "./devlog.tsx";
+
+
 const Home = () => {
     const [selectedPage, setSelectedPage] = useState<SelectedPage>(SelectedPage.Home);
     const [isTopOfPage, setIsTopOfPage] = useState<boolean>(true);
@@ -33,6 +36,7 @@ const Home = () => {
             {/*<div className="md:pt-[20dvh] pt-[10dvh]">*/}
                 <About setSelectedPage={setSelectedPage} />
                 <Game setSelectedPage={setSelectedPage}/>
+                {/*<Devlog setSelectedPage={setSelectedPage}/>*/}
                 <Team setSelectedPage={setSelectedPage} />
                 <Faq setSelectedPage={setSelectedPage} />
                 <Footer setSelectedPage={setSelectedPage} />

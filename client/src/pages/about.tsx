@@ -35,10 +35,10 @@ const About = ({setSelectedPage}: Props) => {
                         }}
                     >
                         <div className="text-primary-background xl:w-1/2 w-full  mx-20">
-                            <h1 className="text-9xl font-kavoon text-end">Floralia</h1>
-                            <h1 className="text-9xl font-kavoon ">Games</h1>
-                            <p className="text-4xl mt-4 text-justify">
-                                Lorem ipsum dolor sit amet consectetur. Laoreet sed tempus et semper luctus lorem. Tellus dapibus ullamcorper urna porta semper id orci ipsum massa. Consequat risus
+                            {/*<h1 className="text-9xl font-kavoon text-end">Floralia</h1>*/}
+                            <h1 className="text-8xl font-kavoon ">Welcome to Floralia Games</h1>
+                            <p className="text-5xl mt-4">
+                                We’re a cozy indie team of passionate game developers creating heartfelt games!
                             </p>
                             <Button as={Link} href={discordLink} radius="full" variant="shadow" color="secondary" className="text-primary-background mt-4">Join us on Discord</Button>
                         </div>
