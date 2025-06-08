@@ -23,23 +23,28 @@ const NavBar = ({selectedPage, setSelectedPage}: Props) => {
     return (
         <Navbar isBordered maxWidth="full" className="bg-primary-bg" onMenuOpenChange={setIsMenuOpen}>
             <NavbarBrand>
-                <h3 className="text-light-secondary text-xl font-bold">FLORALIA GAMES</h3>
+                <h3 className="text-light-secondary text-2xl font-bold">FLORALIA GAMES</h3>
             </NavbarBrand>
             <NavbarContent justify="end">
                 <NavbarItem>
-                    <div className="hidden sm:flex">
+                    <div className="hidden sm:flex gap-2">
+                        <Link
+                            page="About"
+                            selectedPage={selectedPage}
+                            setSelectedPage={setSelectedPage}
+                        />
                         <Link
                             page="Games"
                             selectedPage={selectedPage}
                             setSelectedPage={setSelectedPage}
                         />
                         <Link
-                            page="FAQ"
+                            page="Team"
                             selectedPage={selectedPage}
                             setSelectedPage={setSelectedPage}
                         />
                         <Link
-                            page="Team"
+                            page="FAQ"
                             selectedPage={selectedPage}
                             setSelectedPage={setSelectedPage}
                         />

@@ -13,12 +13,15 @@ export interface TeamType {
     name: string;
     title: string;
     image: string;
+    color: string;
 }
 
 export interface FaqType {
     id?: string;
     question: string;
     answer: string;
+    color?: string;
+    bgColor?: string;
 }
 
 export interface SocialsType {
@@ -26,6 +29,7 @@ export interface SocialsType {
     name: string;
     url: string;
     image?: string;
+    basis?: string;
 }
 
 export interface GameType {

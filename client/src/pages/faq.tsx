@@ -2,6 +2,8 @@ import { useState } from "react";
 import {SelectedPage, FaqType} from "../shared/types";
 import {motion} from "framer-motion";
 import {FaqList} from "../shared/data.ts";
+import title from "../assets/Icons/faq-title.png";
+import {Card, CardBody, Image} from "@heroui/react";
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void;
@@ -19,37 +21,47 @@ const Faq = ({setSelectedPage}: Props) => {
     return (
         <section id="faq">
             <motion.div
-                className=" bg-[url(assets/mainBg.png)] h-full"
+                className=""
                 onViewportEnter={() => setSelectedPage(SelectedPage.FAQ)}
             >
-                <motion.div
-                    className="mx-auto flex flex-col items-center justify-center"
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{once:true, amount: 0.5}}
-                    transition={{ duration: 0.5 }}
-                    variants={{
-                        hidden: { opacity: 0, y: 50},
-                        visible: {opacity: 1, y: 0}
-                    }}
+                <div
+                    className="mx-auto flex flex-col items-center justify-center xl:w-full w-11/12"
+                    // initial="hidden"
+                    // whileInView="visible"
+                    // viewport={{once:true, amount: 0.5}}
+                    // transition={{ duration: 0.5 }}
+                    // variants={{
+                    //     hidden: { opacity: 0, y: 50},
+                    //     visible: {opacity: 1, y: 0}
+                    // }}
                 >
-                    <h1 className="py-4 text-4xl text-[#4C3F3F]">FAQ</h1>
-                    <div className="xl:w-5/6 w-11/12 justify-center items-center grid xl:grid-cols-2 gap-4">
+                    <Image
+                        alt="FAQ Title"
+                        src={title}
+                        width="80%"
+                        className="mx-auto"
+                    />
+                    <div className="xl:w-4/5 w-11/12 justify-center items-center grid xl:grid-cols-2 gap-6 m-auto">
                         { FaqList.map((item: FaqType, index: number) => (
-                            <div key={`faq-${index}`} className="z-10 xl:py-2 3xl:py-4">
-                                <button id={`faq-q-${index}`} className="bg-white rounded-2xl px-2 3xl:py-2 w-[85dvw] xl:w-full" onClick={()=> handleDropdownToggle(index)} >
-                                    <h6 className="py-6 px-2 text-lg 3xl:text-2xl">{item.question}</h6>
-                                </button>
-                                {dropdownToggledIndex===index && (
-                                    <div id={`faq-a-${index}`} className="bg-blue-200 rounded-2xl my-2 px-2 3xl:py-2 w-[85dvw] xl:w-full">
-                                        <h6 className="py-6 px-2 text-lg 3xl:text-2xl">{item.answer}</h6>
-                                    </div>
+                            <div key={`faq-${index}`} className="">
+                                {dropdownToggledIndex!==index ? (
+                                    <Card key={index} isPressable shadow="sm" onPress={() => handleDropdownToggle(index)} className="aspect-2/1 rounded-lg shadow-lg" fullWidth >
+                                        <CardBody className={`${item.bgColor}`} style={{ color: item.color }}>
+                                            <h6 className="text-4xl 2xl:text-5xl p-4">{item.question}</h6>
+                                        </CardBody>
+                                    </Card>
+                                ) : (
+                                    <Card key={index} isPressable shadow="sm" onPress={() => handleDropdownToggle(index)} className="aspect-2/1 rounded-lg shadow-lg" fullWidth>
+                                        <CardBody className={`${item.bgColor}`} style={{ color: item.color }}>
+                                            <h6 className="text-4xl 2xl:text-5xl p-4">{item.answer}</h6>
+                                        </CardBody>
+                                    </Card>
                                 )}
 
                             </div>
                         ))}
                     </div>
-                </motion.div>
+                </div>
             </motion.div>
         </section>
     )

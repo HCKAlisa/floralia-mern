@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/navbar.tsx";
 import Team from "./team.tsx";
-import Footer from "./socials.tsx";
+import Socials from "./socials.tsx";
 import Faq from "./faq.tsx";
 import Game from "./game.tsx";
 import { SelectedPage } from "../shared/types";
 import About from "./about.tsx";
-import Devlog from "./devlog.tsx";
+// import Devlog from "./devlog.tsx";
+import Footer from "../components/footer.tsx";
 
 
 const Home = () => {
@@ -39,7 +40,8 @@ const Home = () => {
                 {/*<Devlog setSelectedPage={setSelectedPage}/>*/}
                 <Team setSelectedPage={setSelectedPage} />
                 <Faq setSelectedPage={setSelectedPage} />
-                <Footer setSelectedPage={setSelectedPage} />
+                <Socials setSelectedPage={setSelectedPage} />
+                <Footer/>
             </div>
 
         </div>

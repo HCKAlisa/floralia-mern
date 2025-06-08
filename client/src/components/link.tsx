@@ -20,7 +20,7 @@ const Link = ({page, selectedPage, setSelectedPage}: Props) => {
         <AnchorLink
             offset={isAboveMediumScreens ? convertVhToPx(20) : convertVhToPx(10)}
             href={`#${lowerCasePageName}`}
-            className={`${selectedPage === lowerCasePageName ? "bg-yellow-100 px-4 rounded-full" : ""} text-xl transition duration-500 hover:bg-orange-100 px-4 rounded-full`}
+            className={`${selectedPage === lowerCasePageName ? "bg-yellow-100 px-4 rounded-full" : ""} text-2xl transition duration-500 hover:bg-orange-100 px-4 rounded-full`}
             onClick={() => setSelectedPage(lowerCasePageName)}>
             {page}
         </AnchorLink>

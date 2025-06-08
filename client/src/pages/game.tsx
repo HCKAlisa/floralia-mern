@@ -39,7 +39,7 @@ const Game = ({setSelectedPage}: Props) => {
                 onViewportEnter={() => setSelectedPage(SelectedPage.Games)}
             >
                 <motion.div
-                    className="mx-auto flex flex-col items-start justify-center xl:w-full w-11/12"
+                    className="mx-auto flex flex-col items-center justify-center xl:w-full w-11/12"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{once:true, amount: 0.5}}
@@ -53,22 +53,22 @@ const Game = ({setSelectedPage}: Props) => {
                         alt="Game Title"
                         src={title}
                         width="80%"
-                        className=" xl:mt-0 mt-10 mx-auto"
+                        className=" mx-auto xl:-mb-20 3xl:-mb-50"
                     />
                     { GameList.map((item: GameType, index: number) => (
-
-                        <div key={`game-${index}`} className="w-screen flex items-center justify-between">
+                        <div key={`game-${index}`} className="w-full flex flex-col xl:flex-row items-center justify-between">
                             { index% 2 !== 0 && (
                                 <Image
                                     src={item.media}
                                     alt={item.name}
                                     width="40%"
                                     removeWrapper
+                                    className="hidden xl:block"
                                 />
                             )}
-                            <div className="xl:w-2/5 w-full mx-20">
-                                <h1 className="text-6xl text-tertiary">{item.name}</h1>
-                                <p className="text-xl">{item.description}</p>
+                            <div className="xl:w-3/5 3xl:w-1/2 w-full mx-20">
+                                <h1 className="text-5xl xl:text-8xl 3xl:text-9xl text-tertiary font-kavoon">{item.name}</h1>
+                                <p className="text-xl 3xl:text-3xl">{item.description}</p>
                                 <ul>
                                     { item.points?.map((point, pointIndex) => (
                                         <li key={`point-${pointIndex}`} className="flex gap-2 items-center text-2xl text-secondary my-2">
@@ -83,6 +83,7 @@ const Game = ({setSelectedPage}: Props) => {
                                     alt={item.name}
                                     width="40%"
                                     removeWrapper
+                                    className="hidden xl:block"
                                 />
                             )}
 
