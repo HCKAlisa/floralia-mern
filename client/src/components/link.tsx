@@ -7,7 +7,7 @@ type Props = {
     setSelectedPage: (value:SelectedPage) => void
 }
 
-const Link = ({page, selectedPage, setSelectedPage}: Props) => {
+const Link = ({page, setSelectedPage}: Props) => {
     const lowerCasePageName = page.toLocaleLowerCase().replace(/ /g, "") as SelectedPage;
 
     return (

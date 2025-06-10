@@ -13,7 +13,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const UpdateGameForm = ( () => {
     const navigate = useNavigate();
-    const [formData, setFormData] = useState<GameType>({id: "", name: "", socials: [], steam: "", released: false, media: "", isVideo: false});
+    const [formData, setFormData] = useState<GameType>({id: "", name: "", socials: [], steam: "", released: false, media: "", isVideo: false, description: "", points: []});
     const [socialsObjects, setSocialsObjects] = useState([{ name: "discord", url: "" }]);
     const [mediaUploadProgress, setMediaUploadProgress] = useState<string | null>(null);
     const [mediaUploadError, setMediaUploadError] = useState<string | null>(null);
