@@ -207,7 +207,7 @@ const SocialList: SocialsType[] = [
         name: "floraliagames@gmail.com",
         image: gmail,
         url: "mailto:floraliagames@gmail.com",
-        basis: "xl:col-span-2"
+        basis: "sm:col-span-2"
     },
 ]
 

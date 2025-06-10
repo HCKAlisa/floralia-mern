@@ -39,7 +39,7 @@ const Socials = ({setSelectedPage}: Props) => {
                 {/*</motion.div>*/}
 
                 <motion.div
-                    className="mx-auto flex flex-col items-start justify-center xl:w-full"
+                    className="mx-auto flex flex-col items-start justify-center sm:w-full"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{once:true, amount: 0.5}}
@@ -53,20 +53,20 @@ const Socials = ({setSelectedPage}: Props) => {
                         <img
                             src={background}
                             alt="Background"
-                            className="w-full h-auto hidden xl:block"
+                            className="w-full h-auto hidden sm:block"
                             aria-hidden="true"
                         />
                         <img
                             src={mobileBackground}
                             alt="Background"
-                            className="w-full h-auto xl:hidden"
+                            className="w-full h-auto sm:hidden"
                             aria-hidden="true"
                         />
-                        <div className="absolute inset-0 z-10 flex flex-col items-center justify-evenly xl:gap-20 w-full h-1/2 xl:mt-50 m-auto">
-                            <div className="w-11/12 xl:w-4/5 flex xl:justify-end">
+                        <div className="absolute inset-0 z-10 flex flex-col items-center justify-evenly xl:gap-20 w-full h-1/2 sm:mt-40 md:mt-50 m-auto">
+                            <div className="w-11/12 md:w-4/5 flex sm:justify-end">
                                 <h1 className="text-5xl xl:text-8xl 3xl:text-7xl xl:w-2/3 3xl:w-1/3 font-kavoon text-primary-background xl:text-end">Reach us on social media</h1>
                             </div>
-                            <div className="w-11/12 xl:w-4/5 grid xl:grid-cols-3 gap-4">
+                            <div className="w-11/12 xl:w-4/5 grid sm:grid-cols-3 gap-4">
                                 {SocialList.map((item: SocialsType) => (
                                     <Button
                                         key={`social-${item.name}`}

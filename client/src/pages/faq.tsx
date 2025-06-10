@@ -39,9 +39,9 @@ const Faq = ({setSelectedPage}: Props) => {
                         alt="FAQ Title"
                         src={title}
                         removeWrapper
-                        className="mx-auto w-1/2 xl:w-1/4"
+                        className="mx-auto w-1/2 sm:w-1/3 xl:w-1/4"
                     />
-                    <div className="xl:w-4/5 w-11/12 justify-center items-center grid xl:grid-cols-2 gap-6 m-auto">
+                    <div className="xl:w-4/5 w-11/12 justify-center items-center grid sm:grid-cols-2 gap-2 md:gap-6 m-auto">
                         { FaqList.map((item: FaqType, index: number) => (
                             <div key={`faq-${index}`} className="">
                                 {dropdownToggledIndex!==index ? (

@@ -39,7 +39,7 @@ const Game = ({setSelectedPage}: Props) => {
                 onViewportEnter={() => setSelectedPage(SelectedPage.Games)}
             >
                 <motion.div
-                    className="mx-auto flex flex-col items-center justify-center xl:w-full"
+                    className="mx-auto flex flex-col items-center justify-center sm:w-full"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{once:true, amount: 0.5}}
@@ -53,15 +53,15 @@ const Game = ({setSelectedPage}: Props) => {
                         alt="Game Title"
                         src={title}
                         removeWrapper
-                        className=" mx-auto w-1/2 xl:w-1/4 xl:-mb-20 3xl:-mb-50"
+                        className=" mx-auto w-1/2 sm:w-1/3 xl:w-1/4 xl:-mb-20 3xl:-mb-50"
                     />
                     { GameList.map((item: GameType, index: number) => (
-                        <div key={`game-${index}`} className="w-full flex flex-col xl:flex-row items-center justify-between text-center xl:text-left">
+                        <div key={`game-${index}`} className="w-full flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
                             <Image
                                 src={item.mobileMedia}
                                 alt={item.name}
                                 removeWrapper
-                                className="xl:hidden mb-5 w-full h-auto"
+                                className="sm:hidden mb-5 w-full h-auto"
                             />
                             { index% 2 !== 0 && (
                                 <Image
@@ -69,10 +69,10 @@ const Game = ({setSelectedPage}: Props) => {
                                     alt={item.name}
                                     width="40%"
                                     removeWrapper
-                                    className="hidden xl:block"
+                                    className="hidden sm:block"
                                 />
                             )}
-                            <div className="xl:w-3/5 3xl:w-1/2 w-11/12 mx-20 flex flex-col items-center xl:items-start justify-center gap-4 ">
+                            <div className="sm:w-3/5 3xl:w-1/2 w-11/12 mx-5 xl:mx-20 flex flex-col items-center sm:items-start justify-center gap-4 ">
                                 <h1 className="text-5xl xl:text-8xl 3xl:text-9xl text-tertiary font-kavoon">{item.name}</h1>
                                 <p className="text-xl 3xl:text-3xl">{item.description}</p>
                                 <ul>
@@ -100,7 +100,7 @@ const Game = ({setSelectedPage}: Props) => {
                                     alt={item.name}
                                     width="40%"
                                     removeWrapper
-                                    className="hidden xl:block"
+                                    className="hidden sm:block"
                                 />
                             )}
 
