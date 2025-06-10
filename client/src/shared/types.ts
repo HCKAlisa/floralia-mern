@@ -42,6 +42,7 @@ export interface GameType {
     released: boolean;
     description: string;
     points?: string[];
+    mobileMedia?: string;
 }
 
 export interface UserType {

@@ -14,10 +14,9 @@ export default {
         jua: ["jua", "sans-serif"],
       },
       backgroundImage: (theme) => ({
-        "gradient-sunset": "linear-gradient(90deg, #F2C035 0%, #EE9551 100%)",
         "gradient-pink-215": "linear-gradient(215deg, #FC8F92 0%, #FFFCED 100%)",
         "gradient-pink-310": "linear-gradient(310deg, #FC8F92 0%, #FFFCED 100%)",
-        "gradient-green-180": "linear-gradient(180deg, #D1D161 0%, #FFFFFF 100%)",
+        "gradient-green-180": "linear-gradient(180deg, #D1D161 0%, #FFFCED 120%)",
         "gradient-yellow": "linear-gradient(140deg, #FFDD93 0%, #FFFCED 100%)",
       }),
     },

@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import {SelectedPage} from "../shared/types.ts";
 import {Image, Button, Link} from "@heroui/react";
 import background from "../assets/background/about-bg-940.png";
-import mobileBackground from "../assets/background/about-bg.png";
+import mobileBackground from "../assets/background/about-bg-vertical.png";
 import { SocialList } from "../shared/data.ts"; // Assuming you have a data file for socials
 
 type Props = {
@@ -32,7 +32,7 @@ const About = ({setSelectedPage}: Props) => {
                         className="xl:hidden"
                     />
                     <motion.div
-                        className="absolute top-20 left-40 xl:top-0 xl:left-0 xl:mx-auto flex xl:items-center justify-end w-2/3 xl:w-full h-full z-10"
+                        className="absolute top-0 left-0 mx-auto flex items-center justify-center xl:justify-end w-full h-full z-10"
                         initial="hidden"
                         whileInView="visible"
                         viewport={{once:true, amount: 0.5}}
@@ -42,13 +42,13 @@ const About = ({setSelectedPage}: Props) => {
                             visible: { opacity: 1, y: 0 }
                         }}
                     >
-                        <div className="text-primary-background xl:w-1/2 w-full xl:mx-20">
+                        <div className="text-primary-background xl:w-1/2 mx-auto w-11/12 xl:mx-20 text-center xl:text-start mt-10 xl:mt-0">
                             {/*<h1 className="text-9xl font-kavoon text-end">Floralia</h1>*/}
-                            <h1 className="text-xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl font-kavoon ">Welcome to Floralia Games</h1>
-                            <p className="xl:text-4xl 3xl:text-5xl mt-4">
+                            <h1 className="text-5xl xl:text-7xl 2xl:text-8xl 3xl:text-9xl font-kavoon ">Welcome to Floralia Games</h1>
+                            <p className="text-2xl xl:text-4xl 3xl:text-5xl xl:mt-4">
                                 We’re a cozy indie team of passionate game developers creating heartfelt games!
                             </p>
-                            <Button as={Link} href={discordLink} radius="full" variant="shadow" color="secondary" className="text-primary-background xl:text-3xl 3xl:text-4xl mt-4 xl:p-4 3xl:p-8 ">Join us on Discord</Button>
+                            <Button as={Link} href={discordLink} radius="full" variant="shadow" color="secondary" className="text-primary-background xl:text-3xl 3xl:text-4xl mt-4 xl:p-4 3xl:p-8 hover:bg-gradient-green-180 transition-colors duration-300">Join us on Discord</Button>
                         </div>
 
                     </motion.div>

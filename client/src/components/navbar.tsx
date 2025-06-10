@@ -11,6 +11,8 @@ import {
     NavbarMenu,
     NavbarMenuItem
 } from "@heroui/navbar";
+import {Image} from "@heroui/react";
+import icon from "../assets/Icons/floralia.png";
 
 type Props = {
     isTopOfPage: boolean;
@@ -21,9 +23,14 @@ type Props = {
 const NavBar = ({selectedPage, setSelectedPage}: Props) => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     return (
-        <Navbar isBordered maxWidth="full" className="bg-primary-bg" onMenuOpenChange={setIsMenuOpen}>
+        <Navbar maxWidth="full" className="bg-primary-background shadow" onMenuOpenChange={setIsMenuOpen} isBlurred={false}>
             <NavbarBrand>
-                <h3 className="text-light-secondary text-2xl font-bold">FLORALIA GAMES</h3>
+                <h3 className="text-light-secondary text-2xl font-bold hidden xl:block">FLORALIA GAMES</h3>
+                <Image
+                    src={icon}
+                    alt="Floralia Games Icon"
+                    className="block xl:hidden"
+                />
             </NavbarBrand>
             <NavbarContent justify="end">
                 <NavbarItem>
@@ -54,13 +61,20 @@ const NavBar = ({selectedPage, setSelectedPage}: Props) => {
                             setSelectedPage={setSelectedPage}
                         />
                     </div>
-                        <NavbarMenuToggle
-                            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-                            className="sm:hidden"
-                        >
-                            <Bars3Icon className="h-6 w-6 text-white" />
-                        </NavbarMenuToggle>
-                    <NavbarMenu>
+                    <NavbarMenuToggle
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                        className="sm:hidden"
+                    >
+                        <Bars3Icon className="h-6 w-6 text-white" />
+                    </NavbarMenuToggle>
+                    <NavbarMenu className="text-center">
+                        <NavbarMenuItem >
+                            <Link
+                                page="About"
+                                selectedPage={selectedPage}
+                                setSelectedPage={setSelectedPage}
+                            />
+                        </NavbarMenuItem>
                         <NavbarMenuItem>
                             <Link
                                 page="Games"

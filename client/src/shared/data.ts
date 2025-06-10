@@ -12,6 +12,7 @@ import joshua from "../assets/Icons/joshua.png"
 import mia from "../assets/Icons/mia.png"
 import tiktok from "../assets/Icons/tiktok.png"
 import gmail from "../assets/Icons/gmail.png"
+import bloomtaleMobile from "../assets/images/bloomtale-mobile.png";
 
 const gameDataKey = Symbol('game');
 export type TGameData = { [gameDataKey]: true; gameId: GameType['id'] };
@@ -47,6 +48,7 @@ const GameList: GameType[] = [
         name: "BloomTale",
         description: "BloomTale is a cozy flower shop simulation game where creativity meets management. Arrange beautiful flower compositions that speak the language of flowers, manage your shop, and satisfy your customers in a world of blooming possibilities.",
         media: bloomtale,
+        mobileMedia: bloomtaleMobile,
         isVideo: false,
         steam: "https://store.steampowered.com/app/3168520/BloomTale/",
         released: false,

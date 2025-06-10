@@ -38,8 +38,8 @@ const Faq = ({setSelectedPage}: Props) => {
                     <Image
                         alt="FAQ Title"
                         src={title}
-                        width="80%"
-                        className="mx-auto"
+                        removeWrapper
+                        className="mx-auto w-1/2 xl:w-1/4"
                     />
                     <div className="xl:w-4/5 w-11/12 justify-center items-center grid xl:grid-cols-2 gap-6 m-auto">
                         { FaqList.map((item: FaqType, index: number) => (
@@ -47,13 +47,13 @@ const Faq = ({setSelectedPage}: Props) => {
                                 {dropdownToggledIndex!==index ? (
                                     <Card key={index} isPressable shadow="sm" onPress={() => handleDropdownToggle(index)} className="aspect-2/1 rounded-lg shadow-lg" fullWidth >
                                         <CardBody className={`${item.bgColor}`} style={{ color: item.color }}>
-                                            <h6 className="text-4xl 2xl:text-5xl p-4">{item.question}</h6>
+                                            <h6 className="text-xl xl:text-4xl 2xl:text-5xl p-4">{item.question}</h6>
                                         </CardBody>
                                     </Card>
                                 ) : (
                                     <Card key={index} isPressable shadow="sm" onPress={() => handleDropdownToggle(index)} className="aspect-2/1 rounded-lg shadow-lg" fullWidth>
                                         <CardBody className={`${item.bgColor}`} style={{ color: item.color }}>
-                                            <h6 className="text-4xl 2xl:text-5xl p-4">{item.answer}</h6>
+                                            <h6 className="text-xl xl:text-4xl 2xl:text-5xl p-4">{item.answer}</h6>
                                         </CardBody>
                                     </Card>
                                 )}
