@@ -18,6 +18,8 @@ export default {
         "gradient-pink-310": "linear-gradient(310deg, #FC8F92 0%, #FFFCED 100%)",
         "gradient-green-180": "linear-gradient(180deg, #D1D161 0%, #FFFCED 120%)",
         "gradient-yellow": "linear-gradient(140deg, #FFDD93 0%, #FFFCED 100%)",
+        "gradient-yellow-310": "linear-gradient(310deg, #FFDD93 0%, #FFFCED 100%)",
+
       }),
     },
     colors:{
@@ -38,8 +40,8 @@ export default {
           background: "#FFFCED", // or DEFAULT
           foreground: "#884239", // or 50 to 900 DEFAULT
           primary: {
-            foreground: "#FFFCED",
-            background: "#FFFCED",
+            foreground: "#FFFBE6",
+            background: "#FFFBE6",
             DEFAULT: "#884239",
           },
           secondary: {
