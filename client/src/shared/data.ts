@@ -134,13 +134,13 @@ const FaqList: FaqType[] = [
     },
     {
         question: "Is BloomTale a paid game?",
-        answer: "Yes.",
+        answer: "Yes, BloomTale pre-order is available on Kickstarter for a discounted price.",
         color: "#FFFFFF",
         bgColor: "bg-[#FFDD93]",
     },
     {
         question: "What platforms will BloomTale be on?",
-        answer: "Yes, both Mac and Windows are confirmed.",
+        answer: "Planned for Steam only at the moment.",
         color: "#884239",
         bgColor: "bg-gradient-pink-310",
     },
