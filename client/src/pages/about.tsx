@@ -10,7 +10,6 @@ type Props = {
 }
 
 const About = ({setSelectedPage}: Props) => {
-    const discordLink = SocialList.find(social => social.name === "Discord")?.url || "#";
 
     return (
         <section id="about">
