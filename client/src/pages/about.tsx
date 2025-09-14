@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import {SelectedPage} from "../shared/types.ts";
+import {SelectedPage, SocialsType} from "../shared/types.ts";
 import {Image, Button, Link} from "@heroui/react";
 import background from "../assets/background/about-bg-940.png";
 import tabletBackground from "../assets/background/about-bg-940.png";
@@ -54,7 +54,24 @@ const About = ({setSelectedPage}: Props) => {
                             <p className="text-2xl sm:text-xl md:text-2xl lg:text-4xl 3xl:text-5xl xl:mt-4 xl:w-11/12">
                                 We’re a cozy indie team of passionate game developers creating heartfelt games!
                             </p>
-                            <Button as={Link} href={discordLink} radius="full" variant="shadow" color="secondary" className="text-primary-background xl:text-3xl 3xl:text-4xl mt-4 xl:p-4 3xl:p-8 hover:bg-gradient-green-180 transition-colors duration-300">Join us on Discord</Button>
+                            <div className="flex justify-center sm:justify-start gap-4 mt-4">
+                                {SocialList.map((item: SocialsType) => (
+                                    <Button
+                                        key={`social-${item.name}`}
+                                        as={Link} href={item.url}
+                                        isIconOnly
+                                        radius="full"
+                                        variant="shadow"
+                                        color="secondary"
+                                        size="lg"
+                                        className={`bg-primary-background shadow-sm p-2 font-kavoon justify-between hover:bg-gradient-yellow-310 transition-all duration-300 ${item.basis}`}
+                                    >
+                                        <img alt={item.name} src={item.image} className="object-center w-10"/>
+                                    </Button>
+                                ))}
+                                {/* <Button as={Link} href={discordLink} isIconOnly radius="full" variant="shadow" color="secondary" className="text-primary-background xl:text-3xl 3xl:text-4xl mt-4 xl:p-4 3xl:p-8 hover:bg-gradient-green-180 transition-colors duration-300"></Button>
+                                <Button as={Link} href="#" isIconOnly radius="full" variant="shadow" color="secondary" className="text-primary-background xl:text-3xl 3xl:text-4xl mt-4 xl:p-4 3xl:p-8 hover:bg-gradient-green-180 transition-colors duration-300"></Button> */}
+                            </div>
                         </div>
 
                     </motion.div>

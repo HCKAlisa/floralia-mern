@@ -41,33 +41,25 @@ import {TeamType, SelectedPage} from "../shared/types";
                                             />
                                             <div className="sm:absolute inset-0 z-10 flex flex-col items-center justify-center w-full h-full">
                                                 <div className="w-11/12 md:w-4/5 grid sm:grid-cols-2 gap-2 xl:gap-4">
-                                                    {TeamList.map((item: TeamType, index: number) =>
-                                                        index % 2 === 0 ? (
-                                                            <div className="w-full" key={`team-${index}`}>
-                                                                <Card className="rounded-lg shadow-lg" >
-                                                                    <CardBody className="bg-primary-background grid grid-cols-2 place-items-start items-center ">
-                                                                        <Image alt={item.name} src={item.image} className="aspect-square w-11/12 xl:w-2/3 place-self-center"/>
-                                                                        <div className="place-item-center">
-                                                                            <h6 className="pt-2 text-2xl sm:text-2xl 2xl:text-5xl" style={{ color: item.color }}>{item.name}</h6>
-                                                                            <h6 className="pb-2 sm:text-xl 2xl:text-2xl">{item.title}</h6>
-                                                                        </div>
-                                                                    </CardBody>
-                                                                </Card>
-                                                            </div>
-                                                        ) : (
-                                                            <div className="w-full" key={`team-${index}`}>
-                                                                <Card className="mx-auto my-auto rounded-lg shadow-lg sm:mt-7" >
-                                                                    <CardBody className="bg-primary-background grid grid-cols-2 place-items-end items-center ">
-                                                                        <div className="place-items-end">
-                                                                            <h6 className="pt-2 text-2xl  sm:text-2xl 2xl:text-5xl text-end" style={{ color: item.color }}>{item.name}</h6>
-                                                                            <h6 className="pb-2 sm:text-xl 2xl:text-2xl text-end">{item.title}</h6>
-                                                                        </div>
-                                                                        <Image alt={item.name} src={item.image} className="aspect-square w-11/12 xl:w-2/3 place-self-center"/>
-                                                                    </CardBody>
-                                                                </Card>
-                                                            </div>
-                                                        )
-                                                    )}
+                                                    {TeamList.map((item: TeamType, index: number) => (
+                                                        <a 
+                                                            href={item.linkedin ? item.linkedin : '#'} 
+                                                            target="_blank" 
+                                                            rel="noopener noreferrer"
+                                                            className={`block ${index % 2 === 1 ? 'sm:mt-8 md:mt-12' : ''}`} 
+                                                            key={`team-${index}`}
+                                                        >
+                                                            <Card className="w-full bg-primary-background rounded-xl shadow-lg hover:bg-gradient-yellow-310 transition-all duration-300" isPressable isHoverable>
+                                                                <CardBody className="py-4 grid grid-cols-2 place-items-center items-center">
+                                                                    <Image alt={item.name} src={item.image} className="aspect-square w-11/12 xl:w-2/3 place-self-center"/>
+                                                                    <div className="place-item-center">
+                                                                        <h6 className="pt-2 text-2xl sm:text-2xl 2xl:text-5xl" style={{ color: item.color }}>{item.name}</h6>
+                                                                        <h6 className="pb-2 sm:text-xl 2xl:text-2xl">{item.title}</h6>
+                                                                    </div>
+                                                                </CardBody>
+                                                            </Card>
+                                                        </a>
+                                                    ))}
                                                 </div>
                                             </div>
                                         </div>
