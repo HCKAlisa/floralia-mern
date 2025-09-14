@@ -14,6 +14,7 @@ export interface TeamType {
     title: string;
     image: string;
     color: string;
+    linkedin?: string;
 }
 
 export interface FaqType {

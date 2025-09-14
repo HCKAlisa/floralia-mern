@@ -12,6 +12,7 @@ import joshua from "../assets/Icons/joshua.png"
 import mia from "../assets/Icons/mia.png"
 import tiktok from "../assets/Icons/tiktok.png"
 import gmail from "../assets/Icons/gmail.png"
+import alisa from "../assets/Icons/alisa.png"
 import bloomtaleMobile from "../assets/images/bloomtale-mobile.png";
 
 const gameDataKey = Symbol('game');
@@ -80,42 +81,56 @@ const TeamList: TeamType[] = [
         name:"Max Choi",
         title: "Programmer",
         image: max,
-        color: "#D1D161",
+        color: "#b5d6a3",
+        linkedin: "https://www.linkedin.com/in/maxchoi01/"
     },
     {
         id: "2",
         name:"Hanna Dabrowska",
         title: "Artist",
         image: hanna,
-        color: "#FC8F92"
+        color: "#FC8F92",
+        linkedin: "https://www.linkedin.com/in/hanna-dąbrowska-04b00834b/"
     },
     {
         id: "3",
         name:"Sion Kim",
         title: "Community Manager",
         image: sion,
-        color: "#8FD3DA"
+        color: "#8FD3DA",
+        linkedin: "https://www.linkedin.com/in/sion-k-2b71a9353/"
     },
     {
         id: "4",
         name:"Yuki Hu",
         title: "Narrative Designer",
         image: yuki,
-        color: "#A46754"
+        color: "#A46754",
+        linkedin: "https://www.linkedin.com/in/yuki-hu-7a8593306/"
     },
     {
         id: "5",
         name:"Joshua Ingeneri",
         title: "Audio Designer",
         image: joshua,
-        color: "#567AD4"
+        color: "#567AD4",
+        linkedin: "https://www.linkedin.com/in/joshua-ingeneri-5764b4225/"
     },
     {
         id: "6",
         name:"Mia Delino",
         title: "Game Designer",
         image: mia,
-        color: "#D1D161"
+        color: "#D1D161",
+        linkedin: "https://www.linkedin.com/in/miadelino/"
+    },
+    {
+        id: "7",
+        name:"Alisa Ho",
+        title: "Programmer",
+        image: alisa,
+        color: "#d9bd44",
+        linkedin: "https://www.linkedin.com/in/alisa-ho-chung-ki/"
     },
 ]
 
