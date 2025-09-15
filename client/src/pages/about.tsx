@@ -4,6 +4,7 @@ import {Image, Button, Link} from "@heroui/react";
 import background from "../assets/background/about-bg-940.png";
 import tabletBackground from "../assets/background/about-bg-940.png";
 import { SocialList } from "../shared/data.ts";
+import KofiWidget from "../components/kofi-widget.tsx";
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void;
@@ -68,8 +69,7 @@ const About = ({setSelectedPage}: Props) => {
                                         <img alt={item.name} src={item.image} className="object-center w-10"/>
                                     </Button>
                                 ))}
-                                {/* <Button as={Link} href={discordLink} isIconOnly radius="full" variant="shadow" color="secondary" className="text-primary-background xl:text-3xl 3xl:text-4xl mt-4 xl:p-4 3xl:p-8 hover:bg-gradient-green-180 transition-colors duration-300"></Button>
-                                <Button as={Link} href="#" isIconOnly radius="full" variant="shadow" color="secondary" className="text-primary-background xl:text-3xl 3xl:text-4xl mt-4 xl:p-4 3xl:p-8 hover:bg-gradient-green-180 transition-colors duration-300"></Button> */}
+                                <KofiWidget />
                             </div>
                         </div>
 
