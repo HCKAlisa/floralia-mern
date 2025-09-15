@@ -1,6 +1,14 @@
 // src/components/KofiWidget.js
 import { useEffect, useState } from 'react';
 
+declare global {
+  interface Window {
+    kofiWidgetOverlay: {
+      draw: (user: string, options: Record<string, unknown>) => void;
+    };
+  }
+}
+
 const KofiWidget = () => {
   // store the load state with useState
   const [loaded, setLoaded] = useState(false);
