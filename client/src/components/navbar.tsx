@@ -22,8 +22,9 @@ type Props = {
 
 const NavBar = ({selectedPage, setSelectedPage}: Props) => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+    
     return (
-        <Navbar maxWidth="full" className="bg-primary-background shadow" onMenuOpenChange={setIsMenuOpen} isBlurred={false}>
+        <Navbar maxWidth="full" className="bg-primary-background shadow" onMenuOpenChange={setIsMenuOpen} isMenuOpen={isMenuOpen} isBlurred={false}>
             <NavbarBrand>
                 <h3 className="text-light-secondary text-2xl font-bold hidden xl:block">FLORALIA GAMES</h3>
                 <Image
@@ -78,11 +79,12 @@ const NavBar = ({selectedPage, setSelectedPage}: Props) => {
                     </NavbarMenuToggle>
             </NavbarContent>
             <NavbarMenu className="flex flex-col items-center h-full justify-center bg-gradient-yellow-310">
-                <NavbarMenuItem >
+                <NavbarMenuItem>
                     <Link
                         page="About"
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage}
+                        onLinkClick={() => setIsMenuOpen(false)}
                     />
                 </NavbarMenuItem>
                 <NavbarMenuItem>
@@ -90,6 +92,7 @@ const NavBar = ({selectedPage, setSelectedPage}: Props) => {
                         page="Games"
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage}
+                        onLinkClick={() => setIsMenuOpen(false)}
                     />
                 </NavbarMenuItem>
                 <NavbarMenuItem>
@@ -97,6 +100,7 @@ const NavBar = ({selectedPage, setSelectedPage}: Props) => {
                         page="FAQ"
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage}
+                        onLinkClick={() => setIsMenuOpen(false)}
                     />
                 </NavbarMenuItem>
                 <NavbarMenuItem>
@@ -104,6 +108,7 @@ const NavBar = ({selectedPage, setSelectedPage}: Props) => {
                         page="Team"
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage}
+                        onLinkClick={() => setIsMenuOpen(false)}
                     />
                 </NavbarMenuItem>
                 <NavbarMenuItem>
@@ -111,6 +116,7 @@ const NavBar = ({selectedPage, setSelectedPage}: Props) => {
                         page="Socials"
                         selectedPage={selectedPage}
                         setSelectedPage={setSelectedPage}
+                        onLinkClick={() => setIsMenuOpen(false)}
                     />
                 </NavbarMenuItem>
             </NavbarMenu>

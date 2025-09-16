@@ -6,6 +6,7 @@ export enum SelectedPage {
     Contact = "contact",
     About = "about",
     Devlog = "devlog",
+    Socials = "socials",
 }
 
 export interface TeamType {

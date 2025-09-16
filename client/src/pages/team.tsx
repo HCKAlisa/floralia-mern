@@ -1,9 +1,9 @@
 import {TeamType, SelectedPage} from "../shared/types";
-                    import { motion } from 'framer-motion';
-                    import {TeamList} from "../shared/data.ts";
-                    import title from "../assets/Icons/team-title.png";
-                    import {Card, CardBody, Image} from "@heroui/react";
-                    import background from "../assets/background/team-bg-1359.png";
+import { motion } from 'framer-motion';
+import {TeamList} from "../shared/data.ts";
+import title from "../assets/Icons/team-title.png";
+import {Card, CardBody, Image} from "@heroui/react";
+import background from "../assets/background/team-bg-1359.png";
 
                     type Props = {
                         setSelectedPage: (value: SelectedPage) => void;
@@ -13,19 +13,13 @@ import {TeamType, SelectedPage} from "../shared/types";
                         return (
                             <section id="team" className="xl:-mt-20">
                                 <motion.div
+                                    className="mx-auto flex flex-col items-center justify-center xl:w-full "
                                     onViewportEnter={() => setSelectedPage(SelectedPage.Team)}
+                                    initial={{ opacity: 0, y: 50 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{once:true, amount: 0.3}}
+                                    transition={{ duration: 0.5 }}
                                 >
-                                    <motion.div
-                                        className="mx-auto flex flex-col items-center justify-center xl:w-full "
-                                        initial="hidden"
-                                        whileInView="visible"
-                                        viewport={{once:true, amount: 0.5}}
-                                        transition={{ duration: 0.5 }}
-                                        variants={{
-                                            hidden: { opacity: 0, y: 50},
-                                            visible: {opacity: 1, y: 0}
-                                        }}
-                                    >
                                         <Image
                                             alt="Team Title"
                                             src={title}
@@ -63,7 +57,6 @@ import {TeamType, SelectedPage} from "../shared/types";
                                                 </div>
                                             </div>
                                         </div>
-                                    </motion.div>
                                 </motion.div>
                             </section>
                         )
