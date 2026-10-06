@@ -11,6 +11,7 @@ import type { Request, Response, NextFunction } from "express";
 import userRoutes from "./src/routes/user.routes.ts";
 import authRoutes from "./src/routes/auth.routes.ts";
 import gameRoutes from "./src/routes/game.routes.ts";
+import { createLocalizationRouter } from "./src/routes/localization.routes.ts";
 
 dotenv.config();
 
@@ -49,6 +50,13 @@ const __parentDir = path.resolve(__dirname, '..');
 app.use("/api/user", (userRoutes));
 app.use("/api/auth", (authRoutes));
 app.use("/api/game", (gameRoutes));
+
+app.use('/localization', createLocalizationRouter({
+    teamDomain: process.env.CLOUDFLARE_ACCESS_TEAM_DOMAIN,
+    audience: process.env.CLOUDFLARE_ACCESS_AUD,
+    clientDirectory: path.join(__parentDir, 'client', 'dist'),
+    webglDirectory: process.env.LOCALIZATION_WEBGL_DIR,
+}));
 
 app.use(express.static(path.join(__parentDir, '/client/dist')));
 

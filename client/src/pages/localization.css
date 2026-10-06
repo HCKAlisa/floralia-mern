@@ -1,0 +1,32 @@
+.localization-page {
+    --portal-background: #fffced;
+    --portal-foreground: #884239;
+    min-height: 100dvh;
+    background: var(--portal-background);
+    color: var(--portal-foreground);
+}
+.localization-main {
+    width: min(100%, 1600px);
+    margin: 0 auto;
+    padding: clamp(20px, 3vw, 48px);
+}
+.localization-content { width: 100%; }
+.localization-content h1 {
+    font-family: Kavoon, Jua, sans-serif;
+    font-size: clamp(32px, 3vw, 48px);
+    line-height: 1.12;
+    margin-bottom: clamp(16px, 2vw, 28px);
+}
+.localization-game {
+    display: block;
+    width: min(100%, calc((100dvh - 190px) * 16 / 9));
+    aspect-ratio: 16 / 9;
+    border: 0;
+    background: #000;
+}
+.localization-status { max-width: 660px; padding: 32px 0; }
+.localization-status h1 { font-size: clamp(28px, 3vw, 40px); line-height: 1.3; text-wrap: balance; }
+@media (max-width: 700px) {
+    .localization-main { padding: 20px; }
+    .localization-game { width: 100%; }
+}

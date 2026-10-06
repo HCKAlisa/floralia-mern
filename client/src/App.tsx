@@ -5,12 +5,14 @@ import Home from "./pages/home"
 import signin from "./pages/admin/signin"
 import admin from "./pages/admin/index"
 import PrivateRoute from "./components/privateRoute.tsx";
+import Localization from "./pages/localization.tsx";
 
 function App() {
 
   return (
       <Routes>
           <Route path="/" Component={Home}/>
+          <Route path="/localization" Component={Localization}/>
           <Route path="/admin/signin" Component={signin}/>
           <Route element={<PrivateRoute />}>
             <Route path="/admin" Component={admin}/>
