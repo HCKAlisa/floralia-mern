@@ -7,6 +7,9 @@
 }
 .localization-main {
     width: min(100%, 1600px);
+    min-height: 100dvh;
+    display: grid;
+    place-items: center;
     margin: 0 auto;
     padding: clamp(20px, 3vw, 48px);
 }
@@ -37,7 +40,7 @@
     border: 0;
     background: #000;
 }
-.localization-status { max-width: 660px; padding: 32px 0; }
+.localization-status { max-width: 660px; padding: 32px 0; text-align: center; }
 .localization-status h1 { font-size: clamp(28px, 3vw, 40px); line-height: 1.3; text-wrap: balance; }
 @media (max-width: 700px) {
     .localization-main { padding: 20px; }
