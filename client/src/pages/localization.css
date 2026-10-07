@@ -11,6 +11,19 @@
     padding: clamp(20px, 3vw, 48px);
 }
 .localization-content { width: 100%; }
+.localization-header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.localization-button {
+    background: #884239;
+    color: #fffced;
+    border: 0;
+    border-radius: 10px;
+    padding: 12px 20px;
+    cursor: pointer;
+    font: inherit;
+}
+.localization-button:focus-visible { outline: 3px solid #884239; outline-offset: 4px; }
+.localization-button:disabled { opacity: .6; cursor: wait; }
+.localization-status p { margin: 16px 0; }
 .localization-content h1 {
     font-family: Kavoon, Jua, sans-serif;
     font-size: clamp(32px, 3vw, 48px);

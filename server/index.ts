@@ -52,8 +52,9 @@ app.use("/api/auth", (authRoutes));
 app.use("/api/game", (gameRoutes));
 
 app.use('/localization', createLocalizationRouter({
-    teamDomain: process.env.CLOUDFLARE_ACCESS_TEAM_DOMAIN,
-    audience: process.env.CLOUDFLARE_ACCESS_AUD,
+    firebaseProjectId: process.env.FIREBASE_PROJECT_ID || 'mern-web-a3109',
+    jwtSecret: process.env.JWT_SECRET,
+    allowedEmails: () => process.env.LOCALIZATION_ALLOWED_EMAILS,
     clientDirectory: path.join(__parentDir, 'client', 'dist'),
     webglDirectory: process.env.LOCALIZATION_WEBGL_DIR,
 }));

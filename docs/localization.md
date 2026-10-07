@@ -1,32 +1,27 @@
 # Localization portal deployment
 
-The localization portal uses Cloudflare Access email-code login. The existing
-admin login is not involved. Express validates the signed Access application
-token before serving the page, session metadata, WebGL files.
-Missing Cloudflare configuration denies access; there is no development bypass.
+The localization portal uses the existing Firebase project's Google sign-in.
+Express verifies the Firebase ID token and the exact server-side email whitelist,
+then issues a separate 24-hour localization session. Admin sessions do not grant
+localization access. The login shell is public; session metadata and every WebGL
+file require a valid localization session and current whitelist membership.
+Missing configuration denies protected access; there is no development bypass.
 
-## Cloudflare
+## Cloudflare transition
 
-1. Finish the Cloudflare Zero Trust Free setup. The free plan currently supports
-   up to 50 users. Review any checkout terms yourself before confirming.
-2. Add `floraliagames.com` to your Cloudflare account. Before changing nameservers
-   at GoDaddy, export the existing DNS zone and preserve all website and email
-   records, including MX, SPF, DKIM, and DMARC. Keep the domain registration at
-   GoDaddy and the website hosted on Render.
-3. Configure proxied Render DNS records using Render's custom-domain instructions.
-   The existing canonical website is `www.floraliagames.com`; the apex redirects
-   there. Check HTTPS and the existing public site after the DNS change.
-4. Create a self-hosted Access application covering the localization path on
-   `www.floraliagames.com`, including `/localization` and all its descendants.
-   Include the apex localization path if it can serve content instead of redirecting.
-5. Enable One-time PIN as its login method. Leave the application with no Allow
-   policies until localizer emails are ready. Do not add an Everyone policy or
-   allow every user of the One-time PIN login method.
-6. When ready, add one Allow policy containing the exact approved email addresses.
-   Use a one-day session duration. All build paths belong to the same application.
-7. Copy the team's `https://<team>.cloudflareaccess.com` URL and this application's
-   AUD tag into the Render settings described below. These are configuration
-   identifiers, not API tokens. No Cloudflare API key is required by the server.
+Keep Cloudflare DNS and the existing Render hosting. Keep the localization
+Access gate during deployment until Google login and private game loading pass.
+Then remove only the localization Access application; preserve Ace Dispatch's
+application, shared organization settings, and website DNS records.
+
+## Firebase
+
+Enable the existing Google sign-in provider and authorize the canonical domain
+`www.floraliagames.com` and apex `floraliagames.com` in Firebase Authentication.
+No service-account credentials are required for public-key ID-token validation.
+The server verifies project issuer/audience, signature, expiry, verified email,
+and the Google sign-in provider. The admin Google endpoint also verifies tokens
+and still requires an existing admin account.
 
 ## Render
 
@@ -35,8 +30,10 @@ Use Node.js 22 or another supported Node.js version compatible with `jose` 6
 commands. Set the variables from `server/.env.localization.example` in Render's
 environment settings; do not put secrets or account settings into client code.
 
-- `CLOUDFLARE_ACCESS_TEAM_DOMAIN`: the exact Cloudflare team URL.
-- `CLOUDFLARE_ACCESS_AUD`: the localization application's audience tag.
+- `FIREBASE_PROJECT_ID`: existing Firebase project ID (defaults to `mern-web-a3109`).
+- `JWT_SECRET`: existing server secret used to sign sessions.
+- `LOCALIZATION_ALLOWED_EMAILS`: comma-separated exact approved addresses. Keep
+  the real list in Render configuration, not in client code or the repository.
 - `LOCALIZATION_WEBGL_DIR`: absolute path to the uploaded Unity WebGL directory.
 
 Store game builds in private storage outside `client/public` and `client/dist`.
@@ -47,9 +44,9 @@ filesystem is ephemeral, so an upload there can disappear during a deployment.
 The repository's `.private/` folder is ignored and only stages the local build;
 it is not automatically uploaded or deployed to Render.
 
-All game files are served through `/localization/play/` after token verification.
-The public `onrender.com` address cannot serve protected content without a valid
-signed application token.
+All game files are served through `/localization/play/` after session verification.
+The public `onrender.com` address can serve the login shell but cannot serve
+session metadata or game files without a valid whitelisted session.
 
 ## WebGL upload
 
@@ -76,7 +73,7 @@ Review `report.json` under `.codex/localizer-refresh/current` for missing entrie
 and changed English source text. The importer writes `manifest.json`; copy that
 file to the build's `StreamingAssets/localizer-translations.json`. The wrapper
 can perform this copy with `-PublishPath '<build>/StreamingAssets' -PublishBuild`.
-Keep the JSON behind the same Access protection as the player.
+Keep the JSON behind the same session protection as the player.
 
 The player reads this snapshot when it starts. Translation changes and new keys
 with English source text do not require recompiling WebGL; testers reload the
@@ -92,17 +89,17 @@ Before inviting localizers, verify all of these against the deployed service:
 
 - The homepage and admin routes still work.
 - An unapproved address cannot enter the localization page.
-- An approved address receives its email code and can play the game in the browser.
+- An approved Google account can sign in and play the game in the browser.
 - Direct WebGL URLs require the same login.
-- Direct requests to `floralia-mern.onrender.com/localization` without a token fail.
+- Direct origin session and game requests without a session fail.
 - Missing or expired tokens fail, and responses do not use public caching.
 - With no uploaded WebGL build, the page shows the unavailable-build state.
 - Without a configured build, `/localization/play/` and its assets return 404.
 
-Cloudflare Access controls who obtains the build; it does not prevent an approved
+The whitelist controls who obtains the build; it does not prevent an approved
 tester from saving or redistributing downloaded game files.
 
-References: [Access email codes](https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/),
-[Access token verification](https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/authorization-cookie/validating-json/),
+References: [Firebase ID token verification](https://firebase.google.com/docs/auth/admin/verify-id-tokens),
+[Google sign-in](https://firebase.google.com/docs/auth/web/google-signin),
 [Render Cloudflare DNS](https://render.com/docs/configure-cloudflare-dns),
 [Render persistent disks](https://render.com/docs/disks).

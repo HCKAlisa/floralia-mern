@@ -4,6 +4,7 @@ import { genSaltSync, hashSync, compareSync } from "bcrypt-ts";
 import { errorHandler } from "../utils/error.ts";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
+import { verifyFirebaseGoogleToken } from '../utils/verifyFirebaseGoogleToken.ts';
 
 /*
 asyncHandler is a utility function that takes another function (fn) as an argument and returns a middleware function compatible with Express.
@@ -78,34 +79,25 @@ export const signin = asyncHandler(async (req: Request, res: Response, next: Nex
 });
 
 export const google = asyncHandler(async (req: Request, res: Response, next: NextFunction) => {
-    const {email, name, googlePhotoUrl} = req.body;
+    let email: string;
+    try {
+        ({ email } = await verifyFirebaseGoogleToken(req.body?.idToken));
+    } catch {
+        res.status(401).json({ code: 'invalid_token' });
+        return;
+    }
     try {
         const user = await User.findOne({email});
         if (user){
-            const token = jwt.sign({id: user._id}, process.env.JWT_SECRET!);
+            const token = jwt.sign({id: user._id}, process.env.JWT_SECRET!, { expiresIn: '1d' });
             const { password, ... rest} = (user as mongoose.Document & { password?: string }).toObject();
             res.status(200)
                 .cookie('access_token', token, {httpOnly: true})
                 .json(rest);
         } else {
-            next(errorHandler('404', 'No User Account'));
-            // const generatedPassword = Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
-            // const salt = genSaltSync(10);
-            // const hashedPassword = hashSync(generatedPassword, salt);
-            // const newUser = new User({
-            //     username: name.toLowerCase().split(" ").join("") + Math.random().toString(9).slice(-4),
-            //     email,
-            //     password: hashedPassword,
-            //     profilePicture: googlePhotoUrl
-            // });
-            // await newUser.save();
-            // const token = jwt.sign({id: newUser._id}, process.env.JWT_SECRET!, {expiresIn: '1d'});
-            // const { password, ... rest} = (newUser as mongoose.Document & { password?: string }).toObject();
-            // res.status(200)
-            //     .cookie('access_token', token, {httpOnly: true})
-            //     .json(rest);
+            res.status(404).json({ code: 'user_not_found' });
         }
-    }catch (e) {
-        next(e);
+    } catch (error) {
+        next(error);
     }
 });

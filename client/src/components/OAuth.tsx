@@ -18,9 +18,7 @@ const OAuth = () => {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    name: resultsFromGoogle.user.displayName,
-                    email: resultsFromGoogle.user.email,
-                    googlePhotoUrl: resultsFromGoogle.user.photoURL,
+                    idToken: await resultsFromGoogle.user.getIdToken(),
                 }),
             })
             const data = await res.json()
