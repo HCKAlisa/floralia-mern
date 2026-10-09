@@ -12,13 +12,15 @@ import userRoutes from "./src/routes/user.routes.ts";
 import authRoutes from "./src/routes/auth.routes.ts";
 import gameRoutes from "./src/routes/game.routes.ts";
 import { createLocalizationRouter } from "./src/routes/localization.routes.ts";
+import { createBugReportRouter } from "./src/routes/bug-report.routes.ts";
 
 dotenv.config();
 
 const app = express();
 
-app.use(express.json());
 app.use(cookieParser());
+app.use("/api/bug-reports", createBugReportRouter());
+app.use(express.json());
 
 const uri = process.env.MONGODB || 'default-connection-string';
 

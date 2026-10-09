@@ -4,6 +4,7 @@ import { IoGameController } from "react-icons/io5";
 import { RiTeamFill } from "react-icons/ri";
 import { FaInfoCircle } from "react-icons/fa";
 import { RiContactsBook3Fill } from "react-icons/ri";
+import { MdBugReport } from "react-icons/md";
 import {useSearchParams} from "react-router-dom";
 import { IoIosLogOut } from "react-icons/io";
 import {useDispatch} from "react-redux";
@@ -53,6 +54,7 @@ const Sidebar = () => {
                     <button onClick={() =>changeTab('Team')} className="flex items-center gap-4 p-6 text-xl hover:bg-emerald-200 hover:shadow-sm hover:shadow-emerald-300/50 w-full text-start"><RiTeamFill /> Team</button>
                     <button onClick={() =>changeTab('FAQ')} className="flex items-center gap-4 p-6 text-xl hover:bg-emerald-200 hover:shadow-sm hover:shadow-emerald-300/50 w-full text-start"><FaInfoCircle /> FAQ</button>
                     <button onClick={() =>changeTab('Contact')} className="flex items-center gap-4 p-6 text-xl hover:bg-emerald-200 hover:shadow-sm hover:shadow-emerald-300/50 w-full text-start"><RiContactsBook3Fill /> Contact</button>
+                    <button onClick={() =>changeTab('Reports')} className="flex items-center gap-4 p-6 text-xl hover:bg-emerald-200 hover:shadow-sm hover:shadow-emerald-300/50 w-full text-start"><MdBugReport /> Reports</button>
                 </div>
             </div>
             <div className="flex items-center justify-between bg-blue-200 p-6">

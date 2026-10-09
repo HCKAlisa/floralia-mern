@@ -89,7 +89,7 @@ export const google = asyncHandler(async (req: Request, res: Response, next: Nex
     try {
         const user = await User.findOne({email});
         if (user){
-            const token = jwt.sign({id: user._id}, process.env.JWT_SECRET!, { expiresIn: '1d' });
+            const token = jwt.sign({ id: user._id, authProvider: 'google', email }, process.env.JWT_SECRET!, { expiresIn: '1d' });
             const { password, ... rest} = (user as mongoose.Document & { password?: string }).toObject();
             res.status(200)
                 .cookie('access_token', token, {httpOnly: true})

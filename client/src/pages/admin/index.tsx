@@ -8,6 +8,7 @@ import Team from "./team/list.tsx"
 import Faq from "./faq/list.tsx"
 import Contact from "./contact/list.tsx"
 import UpdateGameForm from "./game/update.tsx"
+import Reports from "./reports.tsx"
 
 const Admin = () => {
     const location = useLocation();
@@ -33,6 +34,7 @@ const Admin = () => {
                 { tab === 'Team' && <Team />}
                 { tab === 'FAQ' && <Faq />}
                 { tab === 'Contact' && <Contact />}
+                { tab === 'Reports' && <Reports />}
             </div>
         </div>
     )

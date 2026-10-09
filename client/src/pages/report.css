@@ -1,0 +1,130 @@
+.report-page {
+    min-height: 100%;
+    display: grid;
+    place-items: center;
+    padding: 32px 20px;
+    background:
+        radial-gradient(circle at top, rgba(255, 221, 147, 0.72), transparent 48%),
+        #fffced;
+    color: #884239;
+}
+
+.report-card {
+    width: min(100%, 640px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: clamp(24px, 5vw, 48px);
+    border: 3px solid rgba(136, 66, 57, 0.2);
+    border-radius: 28px;
+    background: rgba(255, 252, 237, 0.96);
+    box-shadow: 0 18px 50px rgba(136, 66, 57, 0.14);
+}
+
+.report-logo {
+    width: min(230px, 65%);
+    margin: 0 auto 12px;
+}
+
+.report-label,
+.report-attachment {
+    font-size: 1.25rem;
+}
+
+.report-description {
+    width: 100%;
+    min-height: 190px;
+    resize: vertical;
+    padding: 14px 16px;
+    border: 2px solid rgba(136, 66, 57, 0.32);
+    border-radius: 14px;
+    background: #fff;
+    color: #4f2b26;
+    font: inherit;
+    outline: none;
+}
+
+.report-description:focus,
+.report-file-input:focus-visible,
+.report-submit:focus-visible,
+.report-remove:focus-visible {
+    outline: 3px solid #fc8f92;
+    outline-offset: 3px;
+}
+
+.report-count {
+    align-self: flex-end;
+    margin-top: -8px;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.report-attachment {
+    width: fit-content;
+    cursor: pointer;
+}
+
+.report-file-input {
+    width: 100%;
+    color: #4f2b26;
+    font: inherit;
+}
+
+.report-preview {
+    position: relative;
+    width: fit-content;
+    max-width: 100%;
+    margin: 2px auto;
+}
+
+.report-preview img {
+    display: block;
+    max-width: 100%;
+    max-height: 260px;
+    border-radius: 14px;
+    object-fit: contain;
+}
+
+.report-remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(79, 43, 38, 0.9);
+    color: #fff;
+    font: 1.5rem/1 Jua, sans-serif;
+    cursor: pointer;
+}
+
+.report-submit {
+    align-self: center;
+    min-width: 180px;
+    margin-top: 10px;
+    padding: 13px 24px;
+    border: 0;
+    border-radius: 999px;
+    background: #884239;
+    color: #fffced;
+    font: 1.05rem Jua, sans-serif;
+    cursor: pointer;
+    transition: transform 150ms ease, opacity 150ms ease;
+}
+
+.report-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.report-submit:disabled {
+    cursor: default;
+    opacity: 0.52;
+}
+
+@media (max-width: 520px) {
+    .report-card {
+        padding: 24px 18px;
+        border-radius: 20px;
+    }
+}
