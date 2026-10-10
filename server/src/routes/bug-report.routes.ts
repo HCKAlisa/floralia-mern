@@ -83,7 +83,7 @@ export const mongoBugReportRepository: BugReportRepository = {
         return value ? cleanRecord(value) : null;
     },
     async findImage(reportId) {
-        const value = await BugReportModel.findOne({ reportId }).select('+screenshot').lean() as { screenshot?: Buffer } | null;
+        const value = await BugReportModel.findOne({ reportId }).select('+screenshot');
         return value?.screenshot ?? null;
     },
 };

@@ -3,10 +3,12 @@ import assert from 'node:assert/strict';
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import jwt from 'jsonwebtoken';
+import mongoose from 'mongoose';
 import { createLocalizationSession } from '../src/utils/verifyLocalizationAccess.ts';
 import {
     createBugReportReaderAuth,
     createBugReportRouter,
+    mongoBugReportRepository,
     type BugReportRepository,
     type StoredBugReport,
 } from '../src/routes/bug-report.routes.ts';
@@ -357,6 +359,21 @@ test('Mongo schema keeps screenshot bytes private and expires reports after thei
     const ttlIndex = BugReportModel.schema.indexes().find(([fields]) => fields.expiresAt === 1);
     assert(ttlIndex);
     assert.equal(ttlIndex[1].expireAfterSeconds, 0);
+});
+
+test('Mongo screenshot reader converts stored BSON binary into JPEG bytes', async () => {
+    const originalFindOne = BugReportModel.collection.findOne;
+    BugReportModel.collection.findOne = (async () => ({
+        _id: new mongoose.Types.ObjectId(),
+        screenshot: new mongoose.mongo.Binary(jpeg),
+    })) as typeof originalFindOne;
+    try {
+        const image = await mongoBugReportRepository.findImage('screenshot-fixture');
+        assert(Buffer.isBuffer(image));
+        assert.deepEqual(Buffer.from(image), jpeg);
+    } finally {
+        BugReportModel.collection.findOne = originalFindOne;
+    }
 });
 
 test('Mongo schema accepts blank optional game context from web fallback and localizer scenes', async () => {
