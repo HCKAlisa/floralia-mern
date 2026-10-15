@@ -25,7 +25,7 @@ const Faq = ({setSelectedPage}: Props) => {
                 onViewportEnter={() => setSelectedPage(SelectedPage.FAQ)}
             >
                 <div
-                    className="mx-auto flex flex-col items-center justify-center xl:w-full w-11/12"
+                    className="mx-auto flex flex-col items-center justify-center xl:w-full w-5/6"
                     // initial="hidden"
                     // whileInView="visible"
                     // viewport={{once:true, amount: 0.5}}
@@ -39,21 +39,21 @@ const Faq = ({setSelectedPage}: Props) => {
                         alt="FAQ Title"
                         src={title}
                         removeWrapper
-                        className="mx-auto w-1/2 sm:w-1/3 xl:w-1/4"
+                        className="mx-auto w-1/2 sm:w-1/3 xl:w-1/6"
                     />
-                    <div className="xl:w-4/5 w-11/12 justify-center items-center grid sm:grid-cols-2 gap-2 md:gap-6 m-auto">
+                    <div className="xl:w-3/5 w-11/12 justify-center items-center grid sm:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-6 m-auto">
                         { FaqList.map((item: FaqType, index: number) => (
                             <div key={`faq-${index}`} className="">
                                 {dropdownToggledIndex!==index ? (
-                                    <Card key={index} isPressable shadow="sm" onPress={() => handleDropdownToggle(index)} className="aspect-2/1 rounded-lg shadow-lg" fullWidth >
+                                    <Card key={index} isPressable shadow="sm" onPress={() => handleDropdownToggle(index)} className="aspect-2/1 xl:aspect-4/3 rounded-lg shadow-lg" fullWidth >
                                         <CardBody className={`${item.bgColor}`} style={{ color: item.color }}>
-                                            <h6 className="text-xl xl:text-4xl 2xl:text-5xl p-4">{item.question}</h6>
+                                            <h6 className="text-xl xl:text-[1.25cqw] p-4 xl:p-2">{item.question}</h6>
                                         </CardBody>
                                     </Card>
                                 ) : (
-                                    <Card key={index} isPressable shadow="sm" onPress={() => handleDropdownToggle(index)} className="aspect-2/1 rounded-lg shadow-lg" fullWidth>
+                                    <Card key={index} isPressable shadow="sm" onPress={() => handleDropdownToggle(index)} className="aspect-2/1 xl:aspect-4/3 rounded-lg shadow-lg" fullWidth>
                                         <CardBody className={`${item.bgColor}`} style={{ color: item.color }}>
-                                            <h6 className="text-xl xl:text-4xl 2xl:text-5xl p-4">{item.answer}</h6>
+                                            <h6 className="text-xl xl:text-[1.25cqw] p-4 xl:p-2">{item.answer}</h6>
                                         </CardBody>
                                     </Card>
                                 )}

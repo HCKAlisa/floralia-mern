@@ -18,7 +18,7 @@ const About = ({setSelectedPage}: Props) => {
                 className="h-screen flex items-center justify-center bg-primary-background bg-[url('assets/background/about-bg-vertical.png')] bg-cover bg-center py-100 sm:py-0 sm:h-full sm:bg-none sm:block "
                 onViewportEnter={() => setSelectedPage(SelectedPage.About)}
             >
-                <div>
+                <div className="sm:relative">
                     <Image
                         alt="hero background"
                         src={background}
@@ -48,10 +48,10 @@ const About = ({setSelectedPage}: Props) => {
                             visible: { opacity: 1, y: 0 }
                         }}
                     >
-                        <div className="text-primary-background sm:w-1/2 mx-auto w-11/12 sm:mr-10 xl:mr-20 text-center sm:text-start mt-10 sm:mt-25 xl:mt-0">
+                        <div className="text-primary-background [text-shadow:0_2px_8px_rgb(0_0_0/0.45)] sm:w-1/2 mx-auto w-5/6 sm:mr-10 xl:mr-[4cqw] text-center sm:text-start mt-10 sm:mt-25 xl:-mt-[10cqw]">
                             {/*<h1 className="text-9xl font-kavoon text-end">Floralia</h1>*/}
-                            <h1 className="text-5xl sm:text-3xl md:text-5xl lg:text-7xl 2xl:text-8xl 3xl:text-9xl font-kavoon ">Welcome to Floralia Games</h1>
-                            <p className="text-2xl sm:text-xl md:text-2xl lg:text-4xl 3xl:text-5xl xl:mt-4 xl:w-11/12">
+                            <h1 className="text-5xl sm:text-3xl md:text-5xl lg:text-7xl xl:text-[5cqw] font-kavoon ">Welcome to Floralia Games</h1>
+                            <p className="text-2xl sm:text-xl md:text-2xl lg:text-4xl xl:text-[2cqw] xl:mt-[0.5cqw] xl:w-11/12">
                                 We’re a cozy indie team of passionate game developers creating heartfelt games!
                             </p>
                             <div className="flex justify-center sm:justify-start gap-4 mt-4">
@@ -64,7 +64,7 @@ const About = ({setSelectedPage}: Props) => {
                                         variant="shadow"
                                         color="secondary"
                                         size="lg"
-                                        className={`bg-primary-background shadow-sm p-2 font-kavoon justify-between hover:bg-gradient-yellow-310 transition-all duration-300 ${item.basis}`}
+                                        className={`bg-primary-background shadow-[0_1px_4px_rgb(0_0_0/0.25)] shadow-black/25 p-2 font-kavoon justify-between hover:bg-gradient-yellow-310 transition-all duration-300 ${item.basis}`}
                                     >
                                         <img alt={item.name} src={item.image} className="object-center w-10"/>
                                     </Button>

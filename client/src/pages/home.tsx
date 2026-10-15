@@ -33,7 +33,7 @@ const Home = () => {
                 selectedPage={selectedPage}
                 setSelectedPage={setSelectedPage}
             />
-            <div>
+            <div className="@container max-w-screen-2xl mx-auto">
             {/*<div className="md:pt-[20dvh] pt-[10dvh]">*/}
                 <About setSelectedPage={setSelectedPage} />
                 <Game setSelectedPage={setSelectedPage}/>

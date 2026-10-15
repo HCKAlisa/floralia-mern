@@ -24,7 +24,7 @@ const NavBar = ({selectedPage, setSelectedPage}: Props) => {
     const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
     
     return (
-        <Navbar maxWidth="full" className="bg-primary-background shadow" onMenuOpenChange={setIsMenuOpen} isMenuOpen={isMenuOpen} isBlurred={false}>
+        <Navbar maxWidth="2xl" className="bg-primary-background shadow" onMenuOpenChange={setIsMenuOpen} isMenuOpen={isMenuOpen} isBlurred={false}>
             <NavbarBrand>
                 <h3 className="text-light-secondary text-2xl font-bold hidden xl:block">FLORALIA GAMES</h3>
                 <Image

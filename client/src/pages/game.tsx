@@ -5,6 +5,7 @@ import {motion} from "framer-motion";
 import {Button, Image, Link} from "@heroui/react";
 import title from "../assets/Icons/games-title.png";
 import bullet from "../assets/Icons/bullet.png";
+import steam from "../assets/Icons/steam.png";
 
 
 type Props = {
@@ -53,7 +54,7 @@ const Game = ({setSelectedPage}: Props) => {
                         alt="Game Title"
                         src={title}
                         removeWrapper
-                        className=" mx-auto w-1/2 sm:w-1/3 xl:w-1/4 xl:-mb-20 3xl:-mb-50"
+                        className=" mx-auto w-1/2 sm:w-1/3 xl:w-1/6 xl:-mb-20 3xl:-mb-50"
                     />
                     { GameList.map((item: GameType, index: number) => (
                         <div key={`game-${index}`} className="w-full flex flex-col sm:flex-row items-center justify-between text-center sm:text-left">
@@ -72,12 +73,12 @@ const Game = ({setSelectedPage}: Props) => {
                                     className="hidden sm:block"
                                 />
                             )}
-                            <div className="sm:w-3/5 3xl:w-1/2 w-11/12 mx-5 xl:mx-20 flex flex-col items-center sm:items-start justify-center gap-4 ">
-                                <h1 className="text-5xl xl:text-8xl 3xl:text-9xl text-tertiary font-kavoon">{item.name}</h1>
-                                <p className="text-xl 3xl:text-3xl">{item.description}</p>
+                            <div className="sm:w-3/5 3xl:w-1/2 w-5/6 mx-auto sm:mx-5 xl:mx-[4cqw] flex flex-col items-center sm:items-start justify-center gap-4 ">
+                                <h1 className="text-5xl xl:text-[3.5cqw] text-tertiary font-kavoon">{item.name}</h1>
+                                <p className="text-xl xl:text-[1.1cqw]">{item.description}</p>
                                 <ul>
                                     { item.points?.map((point, pointIndex) => (
-                                        <li key={`point-${pointIndex}`} className="flex gap-2 items-center text-2xl text-secondary my-2">
+                                        <li key={`point-${pointIndex}`} className="flex gap-2 items-center text-2xl xl:text-[1.1cqw] text-secondary my-2">
                                             <Image src={bullet} width="80%"/> {point}
                                         </li>
                                     ))}
@@ -89,9 +90,9 @@ const Game = ({setSelectedPage}: Props) => {
                                     target="_blank"
                                     radius="full"
                                     variant="shadow"
-                                    className="w-full xl:w-1/2 3xl:w-1/3 bg-tertiary text-primary-background hover:bg-gradient-pink-310 font-kavoon text-2xl 3xl:text-3xl px-4 py-2 transition-colors duration-300"
+                                    className="w-full xl:w-1/2 bg-tertiary text-primary-background hover:bg-gradient-pink-310 font-kavoon text-2xl xl:text-[1.1cqw] px-4 py-2 transition-colors duration-300"
                                 >
-                                    {item.released ? ("Play Now") : ("Wishlist")}
+                                    Check it out <Image src={steam} removeWrapper className="w-7 xl:w-[1.5cqw]"/>
                                 </Button>
                             </div>
                             { index% 2 === 0 && (
