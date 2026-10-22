@@ -36,5 +36,10 @@
   },
   "overrides": {
     "qs": "^6.16.0"
+  },
+  "packageManager": "npm@12.2.1",
+  "engines": {
+    "node": "^24.22.1",
+    "npm": "^12.2.1"
   }
 }

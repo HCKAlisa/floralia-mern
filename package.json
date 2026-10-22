@@ -10,5 +10,10 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "packageManager": "npm@12.2.1",
+  "engines": {
+    "node": "^24.22.1",
+    "npm": "^12.2.1"
+  }
 }
