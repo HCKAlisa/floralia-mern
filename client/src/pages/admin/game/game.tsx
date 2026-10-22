@@ -65,7 +65,7 @@ export function Game({ Game }: { Game: GameType }) {
     const [state, setState] = useState<GameState>(idle);
     const [gameIdToDelete, setGameIdToDelete] = useState('');
     const [showModal, setShowModal] = useState(false);
-    const [_searchParams, setSearchParams] = useSearchParams({ tab: 'UpdateGame', gameId: '' });
+    const [, setSearchParams] = useSearchParams({ tab: 'UpdateGame', gameId: '' });
 
     useEffect(() => {
         const element = ref.current;
@@ -158,8 +158,8 @@ export function Game({ Game }: { Game: GameType }) {
             } else {
                 console.log(data.message);
             }
-        } catch (error: any) {
-            console.log(error.message);
+        } catch (error) {
+            console.log(error instanceof Error ? error.message : error);
         }
     };
 

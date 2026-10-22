@@ -119,7 +119,7 @@ export function Team({ team }: { team: TeamType }) {
                 },
             }),
         );
-    }, [Team]);
+    }, [team]);
 
     return (
         <>

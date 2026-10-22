@@ -10,13 +10,11 @@ import { IoIosLogOut } from "react-icons/io";
 import {useDispatch} from "react-redux";
 import { signoutSuccess }  from '../redux/user/userSlice.ts'
 import { useSelector } from "react-redux";
-import { combineReducers } from '@reduxjs/toolkit'
-const rootReducer = combineReducers({})
-export type IRootState = ReturnType<typeof rootReducer>
+import type { RootState } from "../redux/store";
 
 const Sidebar = () => {
-    const { currentUser } = useSelector( (state:IRootState) => state.user);
-    const [_searchParams, setSearchParams] = useSearchParams();
+    const { currentUser } = useSelector( (state: RootState) => state.user);
+    const [, setSearchParams] = useSearchParams();
     const dispatch = useDispatch();
     const changeTab = (newSession: string) => {
         setSearchParams(params => {
@@ -36,8 +34,8 @@ const Sidebar = () => {
             } else {
                 dispatch(signoutSuccess());
             }
-        } catch (error: any) {
-            console.log(error.message);
+        } catch (error) {
+            console.log(error instanceof Error ? error.message : error);
         }
     };
 

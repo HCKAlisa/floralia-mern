@@ -1,5 +1,5 @@
 import {GameType} from "./../../../shared/types";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, type FormEvent, useState} from "react";
 import { MdAddCircle } from "react-icons/md";
 import { ImBin } from "react-icons/im";
 import { MdOutlineSaveAlt } from "react-icons/md";
@@ -30,7 +30,7 @@ const GameForm = (() => {
     };
 
     const handleSelectChange = (selectedOption: string, index: number) => {
-        let onChangeValue = [...socialsObjects];
+        const onChangeValue = [...socialsObjects];
         onChangeValue[index].name = selectedOption;
         setSocialsObjects(onChangeValue);
         setFormData({...formData,socials: socialsObjects});
@@ -38,7 +38,7 @@ const GameForm = (() => {
     };
 
     const handleUrlChange = (newUrl: string, index: number) => {
-        let onChangeValue = [...socialsObjects];
+        const onChangeValue = [...socialsObjects];
         onChangeValue[index].url = newUrl;
         setSocialsObjects(onChangeValue);
         setFormData({...formData,socials: socialsObjects});
@@ -88,7 +88,7 @@ const GameForm = (() => {
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     setMediaUploadProgress(progress.toFixed(0));
                 },
-                (_error) => {
+                () => {
                     setMediaUploadError('Media upload failed (File must be less than 100MB)');
                     setMediaUploadProgress(null);
                 },
@@ -108,7 +108,7 @@ const GameForm = (() => {
         }
     };
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setFormData({...formData,socials: socialsObjects});
         console.log(formData);
@@ -126,7 +126,7 @@ const GameForm = (() => {
             if (res.ok) {
                 navigate('/admin?tab=Games');
             }
-        } catch (e) {
+        } catch {
             window.alert("Something went wrong");
         }
     };

@@ -12,7 +12,7 @@ import {useSearchParams} from "react-router-dom";
 
 const TeamList = () => {
     const [teams, setTeams] = useState<TeamType[]>(() => getTeams());
-    const [_searchParams, setSearchParams] = useSearchParams();
+    const [, setSearchParams] = useSearchParams();
 
     const changeTab = (newSession: string) => {
         setSearchParams(params => {

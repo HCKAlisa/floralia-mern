@@ -1,6 +1,8 @@
 import logo from "../../assets/logo.png";
 import {UserType} from "../../shared/types";
-import {useState} from "react";
+import {useState, type ChangeEvent, type FormEvent} from "react";
+import type { RootState } from "../../redux/store";
+import type { AuthenticatedUser } from "../../redux/user/userSlice";
 import { useNavigate } from 'react-router-dom';
 import { signInStart, signInFailure, signInSuccess } from "../../redux/user/userSlice.ts";
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,14 +10,14 @@ import OAuth from "../../components/OAuth";
 
 const Signin = () => {
     const [formData, setFormData] = useState<UserType>();
-    const {isLoading , error: errorMessage } = useSelector((state: any) => state.user);
+    const {loading: isLoading, error: errorMessage } = useSelector((state: RootState) => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({...formData, [e.target.id]: e.target.value.trim()});
     };
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (formData==undefined || !formData.username || !formData.password){
             return dispatch(signInFailure('Please fill in all fields.'));
@@ -29,17 +31,18 @@ const Signin = () => {
                 body: JSON.stringify(formData),
             });
 
-            const data: any = await res.json();
-            if (data.success === false) {
+            const data: AuthenticatedUser | { success: false; message: string } = await res.json();
+            if ('success' in data) {
                 dispatch(signInFailure(data.message));
+                return;
             }
 
             if (res.ok) {
                 dispatch(signInSuccess(data));
                 navigate('/admin?tab=Dashboard');
             }
-        } catch (error: any) {
-            dispatch(signInFailure(error.message));
+        } catch (error) {
+            dispatch(signInFailure(error instanceof Error ? error.message : String(error)));
         }
     };
 

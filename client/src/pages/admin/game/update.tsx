@@ -1,5 +1,5 @@
 import {GameType} from "./../../../shared/types";
-import {ChangeEvent, useEffect, useState} from "react";
+import {ChangeEvent, type FormEvent, useEffect, useState} from "react";
 import { MdAddCircle } from "react-icons/md";
 import { ImBin } from "react-icons/im";
 import { MdOutlineSaveAlt } from "react-icons/md";
@@ -18,7 +18,7 @@ const UpdateGameForm = ( () => {
     const [mediaUploadProgress, setMediaUploadProgress] = useState<string | null>(null);
     const [mediaUploadError, setMediaUploadError] = useState<string | null>(null);
     const [mediaUploadSuccess, setMediaUploadSuccess] = useState<boolean>(false);
-    const [_publishError, setPublishError] = useState(null);
+    const [, setPublishError] = useState(null);
     const { gameId } = useParams();
 
     useEffect(() => {
@@ -40,8 +40,8 @@ const UpdateGameForm = ( () => {
             };
 
             fetchGame();
-        } catch (error: any) {
-            console.log(error.message);
+        } catch (error) {
+            console.log(error instanceof Error ? error.message : error);
         }
     }, [gameId]);
 
@@ -56,7 +56,7 @@ const UpdateGameForm = ( () => {
     };
 
     const handleSelectChange = (selectedOption: string, index: number) => {
-        let onChangeValue = [...socialsObjects];
+        const onChangeValue = [...socialsObjects];
         onChangeValue[index].name = selectedOption;
         setSocialsObjects(onChangeValue);
         setFormData({...formData,socials: socialsObjects});
@@ -64,7 +64,7 @@ const UpdateGameForm = ( () => {
     };
 
     const handleUrlChange = (newUrl: string, index: number) => {
-        let onChangeValue = [...socialsObjects];
+        const onChangeValue = [...socialsObjects];
         onChangeValue[index].url = newUrl;
         setSocialsObjects(onChangeValue);
         setFormData({...formData,socials: socialsObjects});
@@ -114,7 +114,7 @@ const UpdateGameForm = ( () => {
                         (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                     setMediaUploadProgress(progress.toFixed(0));
                 },
-                (_error) => {
+                () => {
                     setMediaUploadError('Media upload failed (File must be less than 100MB)');
                     setMediaUploadProgress(null);
                 },
@@ -134,7 +134,7 @@ const UpdateGameForm = ( () => {
         }
     };
 
-    const handleSubmit = async (e: any) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setFormData({...formData,socials: socialsObjects});
         console.log(formData);
@@ -152,7 +152,7 @@ const UpdateGameForm = ( () => {
             if (res.ok) {
                 navigate('/admin?tab=Games');
             }
-        } catch (e) {
+        } catch {
             window.alert("Something went wrong");
         }
     };

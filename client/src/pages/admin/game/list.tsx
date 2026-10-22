@@ -13,7 +13,7 @@ import {useSearchParams} from "react-router-dom";
 const GameList = () => {
     //const [games, setGames] = useState<GameType[]>(() => getGames());
     const [games, setGames] = useState<GameType[]>([]);
-    const [_searchParams, setSearchParams] = useSearchParams();
+    const [, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         try {
@@ -27,8 +27,8 @@ const GameList = () => {
                 }
             };
             fetchGames();
-        } catch (error: any) {
-            console.log(error.message);
+        } catch (error) {
+            console.log(error instanceof Error ? error.message : error);
         }
     }, []);
             console.log(games);

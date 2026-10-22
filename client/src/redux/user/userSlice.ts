@@ -1,8 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 
+export interface AuthenticatedUser {
+    _id: string;
+    username: string;
+    email: string;
+    profilePicture: string;
+}
+
 export interface CounterState {
-    currentUser: any,
+    currentUser: AuthenticatedUser | null,
     error: string | null,
     loading: boolean
 }
@@ -21,12 +28,12 @@ const userSlice = createSlice({
             state.loading = true;
             state.error = null;
         },
-        signInSuccess: (state: CounterState, action: PayloadAction<any>) => {
+        signInSuccess: (state: CounterState, action: PayloadAction<AuthenticatedUser>) => {
             state.currentUser = action.payload;
             state.loading = false;
             state.error = null;
         },
-        signInFailure: (state: CounterState, action: PayloadAction<any>) => {
+        signInFailure: (state: CounterState, action: PayloadAction<string>) => {
             state.loading = false;
             state.error = action.payload;
         },
